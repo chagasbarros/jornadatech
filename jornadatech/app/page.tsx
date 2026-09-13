@@ -13,6 +13,7 @@ import {
   X,
   ArrowRight,
 } from "lucide-react";
+import Link from "next/link";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -148,12 +149,12 @@ export default function Home() {
             </a>
           </nav>
 
-          <a
-            href="#comecar"
+          <Link
+            href="/login"
             className="hidden rounded-full bg-[#2F6B45] px-5 py-2.5 text-[14px] font-semibold text-[#F6F2E7] transition-colors hover:bg-[#26582F] md:inline-flex"
           >
             Criar meu Canvas
-          </a>
+          </Link>
 
           <label
             htmlFor="nav-toggle"
@@ -181,12 +182,12 @@ export default function Home() {
           <a href="#algoritmo" className="py-2 text-[15px] text-[#354238]">
             O algoritmo
           </a>
-          <a
-            href="#comecar"
+          <Link
+            href="/login"
             className="mt-2 rounded-full bg-[#2F6B45] px-5 py-2.5 text-center text-[14px] font-semibold text-[#F6F2E7]"
           >
             Criar meu Canvas
-          </a>
+          </Link>
         </div>
       </header>
 
@@ -207,14 +208,14 @@ export default function Home() {
               </p>
 
               <div className="mt-9 flex flex-wrap items-center gap-5">
-                <a
+                <Link
                   id="comecar"
-                  href="#"
+                  href="/login"
                   className="inline-flex items-center gap-2 rounded-full bg-[#2F6B45] px-6 py-3.5 text-[15px] font-semibold text-[#F6F2E7] transition-colors hover:bg-[#26582F]"
                 >
                   Criar meu Canvas de carreira
                   <ArrowRight className="h-4 w-4" aria-hidden />
-                </a>
+                </Link>
                 <a
                   href="#como-funciona"
                   className="text-[15px] font-semibold text-[#16231C] underline decoration-[#BFE3CE] decoration-2 underline-offset-4 transition-colors hover:decoration-[#2F6B45]"
@@ -465,13 +466,13 @@ export default function Home() {
               Comece pela autoavaliação e descubra hoje o que mais vale a pena
               desenvolver esta semana.
             </p>
-            <a
-              href="#comecar"
+            <Link
+              href="/login"
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#2F6B45] px-7 py-3.5 text-[15px] font-semibold text-[#F6F2E7] transition-colors hover:bg-[#26582F]"
             >
               Criar meu Canvas de carreira
               <ArrowRight className="h-4 w-4" aria-hidden />
-            </a>
+            </Link>
           </div>
         </section>
       </main>
