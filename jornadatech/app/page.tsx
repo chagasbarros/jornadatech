@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Fraunces, Manrope } from "next/font/google";
 import {
   UserPlus,
   ListChecks,
@@ -14,19 +13,6 @@ import {
   ArrowRight,
 } from "lucide-react";
 import Link from "next/link";
-
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-display",
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
-});
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  variable: "--font-body",
-  weight: ["400", "500", "600", "700", "800"],
-});
 
 export const metadata: Metadata = {
   title:
@@ -115,7 +101,7 @@ const telas = [
 export default function Home() {
   return (
     <div
-      className={`${fraunces.variable} ${manrope.variable} font-[family-name:var(--font-body)] bg-[#F6F2E7] text-[#16231C] antialiased`}
+      className={`font-[family-name:var(--font-display)/var(--font-body)] bg-[#F6F2E7] text-[#16231C] antialiased`}
     >
       {/* ---------- Navegação ---------- */}
       <header className="sticky top-0 z-50 border-b border-[#DCE6DA] bg-[#F6F2E7]/90 backdrop-blur">

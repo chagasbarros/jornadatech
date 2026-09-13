@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Fraunces, Manrope } from "next/font/google";
 import { Mail, ArrowRight, ArrowLeft, GraduationCap } from "lucide-react";
 
@@ -22,6 +23,12 @@ const manrope = Manrope({
 // desta rota no layout pai (app/login/layout.tsx) caso precise de SEO aqui.
 
 export default function LoginPage() {
+  const router = useRouter();
+
+  function loginBemSucedido() {
+    router.push("/welcome");
+  }
+
   return (
     <div
       className={`${fraunces.variable} ${manrope.variable} font-[family-name:var(--font-body)] grid min-h-screen bg-[#F6F2E7] text-[#16231C] md:grid-cols-[1fr_1fr] lg:grid-cols-[0.9fr_1.1fr]`}
@@ -82,6 +89,9 @@ export default function LoginPage() {
 
             <button
               type="submit"
+              onClick={() => {
+                loginBemSucedido();
+              }}
               className="mt-2 flex w-full items-center justify-center gap-2 rounded-full bg-[#2F6B45] py-3.5 text-[15px] font-semibold text-[#F6F2E7] transition-colors hover:bg-[#26582F]"
             >
               Entrar
