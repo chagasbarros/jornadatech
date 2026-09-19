@@ -93,11 +93,10 @@ export default function AutoavaliacaoPage() {
   return (
     <div className="mx-auto max-w-2xl">
       <h1 className="font-[family-name:var(--font-display)] text-[28px] leading-tight tracking-tight text-[#16231C] md:text-[34px] mt-10">
-        Como você avalia suas competências hoje?
+        Avalie suas competências técnicas e comportamentais
       </h1>
       <p className="mt-3 text-[15px] leading-relaxed text-[#4B5B52]">
-        0 significa "nunca pratiquei" e 5 significa "domino bem". Seja honesto —
-        isso é só o ponto de partida.
+        Zero significa nunca pratiquei e 5 significa domino bem.
       </p>
 
       <div className="mt-6">
@@ -156,14 +155,14 @@ export default function AutoavaliacaoPage() {
 
       <div className="mt-14 flex items-center justify-between">
         <Link
-          href="/onboarding/areas-interesse"
+          href="/canvas"
           className="inline-flex items-center gap-1.5 text-[14px] font-medium text-[#4B5B52] transition-colors hover:text-[#16231C]"
         >
           <ArrowLeft className="h-4 w-4" aria-hidden />
           Voltar
         </Link>
         <Link
-          href={podeContinuar ? "/result" : "#"}
+          href={podeContinuar ? "/canvas" : "#"}
           aria-disabled={!podeContinuar}
           className={
             "inline-flex items-center gap-2 rounded-full px-6 py-3 text-[15px] font-semibold transition-colors " +
