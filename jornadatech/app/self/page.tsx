@@ -6,28 +6,33 @@ import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 
 const MOMENTOS = [
   {
-    id: "ensino-medio",
-    titulo: "Estou no ensino médio",
-    texto: "Ainda explorando possibilidades de carreira.",
+    id: "semestre-1",
+    titulo: "1º semestre",
   },
   {
-    id: "ads",
-    titulo: "Estou começando em ADS ou curso técnico",
-    texto: "Já escolhi a área, mas quero direção sobre onde focar.",
+    id: "semestre-2",
+    titulo: "2º semestre",
   },
   {
-    id: "transicao",
-    titulo: "Estou em transição de carreira",
-    texto: "Venho de outra área e quero migrar para tecnologia.",
+    id: "semestre-3",
+    titulo: "3º semestre",
+  },
+  {
+    id: "semestre-4",
+    titulo: "4º semestre",
+  },
+  {
+    id: "semestre-5",
+    titulo: "5º semestre",
   },
 ];
 
 const CURIOSIDADES = [
-  "Programação",
-  "Design e interfaces",
-  "Dados e análises",
+  "Desenvolvimento de software",
+  "Análise de Sistemas",
+  "Gestão de projetos em TI",
   "Redes e infraestrutura",
-  "Gestão e times",
+  "Segurança da informação",
   "Testes e qualidade",
 ];
 
@@ -46,15 +51,12 @@ export default function QuemSouEuPage() {
       <h1 className="font-[family-name:var(--font-display)] text-[28px] leading-tight tracking-tight text-[#16231C] md:text-[34px] mt-10">
         Quem é você nessa jornada?
       </h1>
-      <p className="mt-3 text-[15px] leading-relaxed text-[#4B5B52]">
-        Isso ajuda a adaptar a linguagem e as sugestões ao seu momento atual.
-      </p>
 
       <div className="mt-10">
-        <p className="mb-3 text-[14px] font-medium text-[#354238]">
-          Onde você está agora?
+        <p className="mb-3 text-[16px] font-medium text-[#354238]">
+          Onde você está no Curso de ADS?
         </p>
-        <div className="space-y-3">
+        <div className="space-y-1">
           {MOMENTOS.map((m) => {
             const selecionado = momento === m.id;
             return (
@@ -64,7 +66,7 @@ export default function QuemSouEuPage() {
                 onClick={() => setMomento(m.id)}
                 aria-pressed={selecionado}
                 className={
-                  "flex w-full items-start gap-3 rounded-2xl border p-4 text-left transition-colors " +
+                  "flex w-full items-start gap-3 rounded-2xl border p-2 text-left transition-colors " +
                   (selecionado
                     ? "border-[#2F6B45] bg-[#BFE3CE]/30"
                     : "border-[#DCE6DA] bg-white/50 hover:border-[#B9C9BE]")
@@ -84,9 +86,6 @@ export default function QuemSouEuPage() {
                   <span className="block text-[15px] font-semibold text-[#16231C]">
                     {m.titulo}
                   </span>
-                  <span className="mt-0.5 block text-[13px] text-[#4B5B52]">
-                    {m.texto}
-                  </span>
                 </span>
               </button>
             );
@@ -97,9 +96,9 @@ export default function QuemSouEuPage() {
       <div className="mt-10">
         <label
           htmlFor="motivacao"
-          className="mb-3 block text-[14px] font-medium text-[#354238]"
+          className="mb-3 block text-[16px] font-medium text-[#354238]"
         >
-          O que te motiva a explorar tecnologia?
+          O que te motiva a estudar tecnologia?
         </label>
         <textarea
           id="motivacao"
@@ -109,8 +108,8 @@ export default function QuemSouEuPage() {
         />
       </div>
 
-      <div className="mt-10">
-        <p className="mb-3 text-[14px] font-medium text-[#354238]">
+      <div className="mt-8">
+        <p className="mb-3 text-[16px] font-medium text-[#354238]">
           Quais assuntos despertam sua curiosidade?{" "}
           <span className="font-normal text-[#8C978F]">(opcional)</span>
         </p>

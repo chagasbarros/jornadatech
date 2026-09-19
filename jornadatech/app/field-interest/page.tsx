@@ -24,32 +24,39 @@ const AREAS = [
       "Construir sites, aplicativos e sistemas — a base de quem programa no dia a dia.",
   },
   {
-    id: "analise-arquitetura",
+    id: "analise",
     icon: Layers,
-    titulo: "Análise e Arquitetura de Software",
+    titulo: "Análise de Sistemas",
     texto:
       "Entender problemas, desenhar soluções e planejar como os sistemas devem ser construídos.",
   },
   {
-    id: "qualidade",
+    id: "gestao",
     icon: BadgeCheck,
-    titulo: "Qualidade de Software",
+    titulo: "Gestão de Projetos em TI",
     texto:
-      "Testar, encontrar falhas e garantir que o que foi construído funciona como esperado.",
+      "Organizar recursos, definir prazos e garantir que os projetos sejam entregues com sucesso.",
   },
   {
-    id: "devops-nuvem",
+    id: "infraestrutura",
     icon: Cloud,
-    titulo: "DevOps e Infraestrutura em Nuvem",
+    titulo: "Redes e infraestrutura",
     texto:
       "Manter sistemas no ar, automatizar processos e cuidar da infraestrutura que sustenta tudo.",
   },
   {
-    id: "gestao-produto",
+    id: "seguranca",
     icon: ClipboardList,
-    titulo: "Gestão e Produto",
+    titulo: "Segurança da Informação",
     texto:
-      "Definir prioridades, organizar times e conectar necessidades de quem usa com o que é construído.",
+      "Proteger dados e sistemas contra ameaças e garantir a integridade das informações.",
+  },
+  {
+    id: "qualidade",
+    icon: ClipboardList,
+    titulo: "Qualidade de Software",
+    texto:
+      "Testar, encontrar falhas e garantir que o que foi construído funciona como esperado.",
   },
 ];
 
