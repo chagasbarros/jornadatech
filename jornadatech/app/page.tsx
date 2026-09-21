@@ -11,6 +11,10 @@ import {
   Menu,
   X,
   ArrowRight,
+  HelpCircle,
+  AlertTriangle,
+  Hourglass,
+  Ticket,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -18,8 +22,29 @@ export const metadata: Metadata = {
   title:
     "Jornada tech — do autoconhecimento ao plano de carreira em tecnologia",
   description:
-    "Descubra a distância entre suas competências atuais e a carreira de tecnologia que você quer seguir. Autoavaliação, comparação de perfil e um plano de ação priorizado.",
+    "Descubra a distância entre suas competências atuais e a carreira de tecnologia que você quer seguir. Monte seu Canvas de carreira e concorra a um ingresso do Evento Conexão.",
 };
+
+const dores = [
+  {
+    icon: HelpCircle,
+    titulo: "Não sei por onde começar",
+    texto:
+      "Front-end, dados, QA, cibersegurança... a tecnologia tem trilhas demais e nenhuma resposta pronta sobre qual é a sua.",
+  },
+  {
+    icon: AlertTriangle,
+    titulo: "Medo de escolher errado",
+    texto:
+      "Investir tempo estudando algo que talvez não combine com você é a principal razão para adiar a decisão.",
+  },
+  {
+    icon: Hourglass,
+    titulo: "Sensação de estar perdendo tempo",
+    texto:
+      "Sem saber o que falta desenvolver, é fácil estudar sem direção e sentir que o esforço não está levando a lugar nenhum.",
+  },
+];
 
 const passos = [
   {
@@ -59,42 +84,24 @@ const passos = [
   },
 ];
 
-const telas = [
+const metodologia = [
   {
-    numero: "05",
-    titulo: "Autoavaliação de competências",
-    texto:
-      "Lista de competências técnicas e comportamentais por categoria, com escala de 0 a 5 e campo opcional para evidências.",
+    autor: "Donald Super",
+    foco: "Estágios de desenvolvimento de carreira: a carreira é um processo ao longo da vida, não uma escolha única.",
+    aplicacao:
+      'As telas "Quem sou eu" e "Áreas de interesse" situam você no seu momento atual antes de sugerir qualquer caminho.',
   },
   {
-    numero: "06",
-    titulo: "Comparação de perfil",
-    texto:
-      "Percentual de compatibilidade com o perfil escolhido e, se mais de um perfil for comparado, um ranking entre eles.",
+    autor: "Edgar Schein",
+    foco: "Âncoras de carreira: o núcleo estável de talentos, motivos e valores que você não abriria mão.",
+    aplicacao:
+      "A autoavaliação captura esse núcleo, e a compatibilidade calculada respeita o que realmente importa para você.",
   },
   {
-    numero: "07",
-    titulo: "Lacunas e trilha sugerida",
-    texto:
-      "Lista ordenada por urgência, com o tipo de recomendação — curso estruturado, projeto prático ou prática dirigida.",
-  },
-  {
-    numero: "08",
-    titulo: "Canvas de carreira",
-    texto:
-      "Objetivo profissional, competências a desenvolver já pré-preenchidas, experiências, portfólio e networking.",
-  },
-  {
-    numero: "09",
-    titulo: "Plano de ação",
-    texto:
-      "Objetivo, ação, prazo e indicador de conclusão, com sugestão automática da primeira ação por lacuna prioritária.",
-  },
-  {
-    numero: "10",
-    titulo: "Painel de acompanhamento",
-    texto:
-      "Linha do tempo da evolução da compatibilidade e status das ações — o aluno refaz a autoavaliação quando quiser.",
+    autor: "Alexander Osterwalder",
+    foco: "Business Model Canvas adaptado à pessoa: nove blocos que organizam sua proposta de valor em uma página só.",
+    aplicacao:
+      "Seu Canvas de Carreira final segue essa mesma estrutura, já pré-preenchido com o resultado da comparação de perfil.",
   },
 ];
 
@@ -124,14 +131,14 @@ export default function Home() {
             >
               Como funciona
             </a>
-            <a href="#telas" className="transition-colors hover:text-[#16231C]">
-              Metodologia
+            <a href="#prova" className="transition-colors hover:text-[#16231C]">
+              Por que confiar
             </a>
             <a
-              href="#algoritmo"
+              href="#sorteio"
               className="transition-colors hover:text-[#16231C]"
             >
-              O algoritmo
+              Evento Conexão
             </a>
           </nav>
 
@@ -162,11 +169,11 @@ export default function Home() {
           <a href="#como-funciona" className="py-2 text-[15px] text-[#354238]">
             Como funciona
           </a>
-          <a href="#telas" className="py-2 text-[15px] text-[#354238]">
-            Metodologia
+          <a href="#prova" className="py-2 text-[15px] text-[#354238]">
+            Por que confiar
           </a>
-          <a href="#algoritmo" className="py-2 text-[15px] text-[#354238]">
-            O algoritmo
+          <a href="#sorteio" className="py-2 text-[15px] text-[#354238]">
+            Evento Conexão
           </a>
           <Link
             href="/login"
@@ -178,115 +185,42 @@ export default function Home() {
       </header>
 
       <main>
-        {/* ---------- Hero ---------- */}
-        <section className="mx-auto max-w-6xl px-6 pb-20 pt-16 md:pb-28 md:pt-24">
-          <div className="grid items-center gap-14 md:grid-cols-[1.1fr_0.9fr]">
-            <div>
-              <h1 className="font-[family-name:var(--font-display)] text-[40px] leading-[1.08] tracking-tight text-[#16231C] md:text-[56px]">
-                Quanto falta entre você e o profissional de tecnologia que você
-                quer ser?
-              </h1>
-              <p className="mt-6 max-w-md text-[17px] leading-relaxed text-[#4B5B52]">
-                O Jornada Tech compara suas competências de hoje com o que uma
-                carreira de tecnologia exige, e transforma essa diferença em uma
-                trilha de desenvolvimento com prioridade clara — sem depender de
-                sorte ou de achismo.
-              </p>
-
-              <div className="mt-9 flex flex-wrap items-center gap-5">
-                <Link
-                  id="comecar"
-                  href="/login"
-                  className="inline-flex items-center gap-2 rounded-full bg-[#2F6B45] px-6 py-3.5 text-[15px] font-semibold text-[#F6F2E7] transition-colors hover:bg-[#26582F]"
-                >
-                  Criar meu Canvas de carreira
-                  <ArrowRight className="h-4 w-4" aria-hidden />
-                </Link>
-                <a
-                  href="#como-funciona"
-                  className="text-[15px] font-semibold text-[#16231C] underline decoration-[#BFE3CE] decoration-2 underline-offset-4 transition-colors hover:decoration-[#2F6B45]"
-                >
-                  Ver como funciona
-                </a>
-              </div>
-
-              <p className="mt-8 text-[13px] text-[#6C7A6F]">
-                Gratuito para estudantes · leva cerca de 15 minutos
-              </p>
+        {/* ---------- Dor / problema ---------- */}
+        <section className="border-t border-[#DCE6DA] bg-white/40 py-10 md:py-10">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="max-w-lg">
+              <h2 className="font-[family-name:var(--font-display)] text-[32px] leading-tight tracking-tight text-[#16231C] md:text-[40px]">
+                Se você se reconhece em algum desses pontos, o Jornada Tech foi
+                feito pra você
+              </h2>
             </div>
 
-            {/* Mockup da Tela 6 — comparação de perfil, com os números do exemplo do projeto */}
-            <div className="rounded-[28px] border border-[#DCE6DA] bg-white/60 p-6 shadow-[0_1px_0_#DCE6DA] md:p-7">
-              <p className="text-[13px] font-medium text-[#6C7A6F]">
-                Compatibilidade com
-              </p>
-              <p className="font-[family-name:var(--font-display)] text-[19px] text-[#16231C]">
-                Desenvolvedor Front-end Jr.
-              </p>
-
-              <div className="mt-5 flex items-end gap-3">
-                <span className="font-[family-name:var(--font-display)] text-[64px] leading-none text-[#2F6B45]">
-                  70%
-                </span>
-                <span className="mb-2 text-[13px] text-[#6C7A6F]">
-                  já atendido
-                </span>
-              </div>
-
-              <div className="mt-7 space-y-5">
-                {[
-                  {
-                    nome: "Comunicação",
-                    atual: 60,
-                    alvo: 60,
-                    urgencia: "atendida",
-                  },
-                  {
-                    nome: "HTML / CSS",
-                    atual: 60,
-                    alvo: 80,
-                    urgencia: "baixa",
-                  },
-                  { nome: "JavaScript", atual: 40, alvo: 80, urgencia: "alta" },
-                ].map((c) => (
-                  <div key={c.nome}>
-                    <div className="mb-1.5 flex items-center justify-between text-[13px]">
-                      <span className="font-medium text-[#354238]">
-                        {c.nome}
-                      </span>
-                      <span className="text-[#6C7A6F]">
-                        {c.urgencia === "atendida"
-                          ? "nível esperado atingido"
-                          : `urgência ${c.urgencia}`}
-                      </span>
+            <div className="mt-10 grid gap-6 md:grid-cols-3">
+              {dores.map((d) => {
+                const Icon = d.icon;
+                return (
+                  <div
+                    key={d.titulo}
+                    className="rounded-2xl border border-[#DCE6DA] bg-[#F6F2E7] p-7"
+                  >
+                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#BFE3CE]/60">
+                      <Icon className="h-5 w-5 text-[#26582F]" aria-hidden />
                     </div>
-                    <div className="relative h-2.5 rounded-full bg-[#EDE9DC]">
-                      <div
-                        className="absolute inset-y-0 left-0 rounded-full border-r-2 border-[#16231C]/25"
-                        style={{ width: `${c.alvo}%` }}
-                      />
-                      <div
-                        className="absolute inset-y-0 left-0 rounded-full bg-[#6FA37E]"
-                        style={{ width: `${c.atual}%` }}
-                      />
-                    </div>
+                    <h3 className="mt-4 text-[16px] font-semibold text-[#16231C]">
+                      {d.titulo}
+                    </h3>
+                    <p className="mt-2 text-[14px] leading-relaxed text-[#4B5B52]">
+                      {d.texto}
+                    </p>
                   </div>
-                ))}
-              </div>
-
-              <p className="mt-6 text-[12px] leading-relaxed text-[#6C7A6F]">
-                Traço escuro marca o nível mínimo esperado para o perfil; verde
-                marca onde você está hoje.
-              </p>
+                );
+              })}
             </div>
           </div>
         </section>
 
         {/* ---------- Como funciona ---------- */}
-        <section
-          id="como-funciona"
-          className="border-t border-[#DCE6DA] bg-white/40 py-20 md:py-28"
-        >
+        <section id="como-funciona" className="py-20 md:py-5">
           <div className="mx-auto max-w-6xl px-6">
             <div className="max-w-lg">
               <h2 className="font-[family-name:var(--font-display)] text-[32px] leading-tight tracking-tight text-[#16231C] md:text-[40px]">
@@ -325,31 +259,50 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ---------- Telas ---------- */}
-        <section id="telas" className="py-20 md:py-28">
+        {/* ---------- Prova: metodologia ---------- */}
+        <section
+          id="prova"
+          className="border-t border-[#DCE6DA] bg-white/40 py-20 md:py-10"
+        >
           <div className="mx-auto max-w-6xl px-6">
             <div className="max-w-lg">
               <h2 className="font-[family-name:var(--font-display)] text-[32px] leading-tight tracking-tight text-[#16231C] md:text-[40px]">
-                Metodologia validada com alunos e orientadores de carreira
+                Não é achismo — é método
               </h2>
               <p className="mt-4 text-[16px] leading-relaxed text-[#4B5B52]">
-                Nossa plataforma entrega um caminho claro, prático e como
-                resultado um Canvas de carreira, que pode ser compartilhado com
-                mentores, professores e colegas.
+                O Jornada Tech traduz em produto digital um Canvas de Carreira
+                fundamentado em três referenciais consolidados: Donald Super,
+                Edgar Schein e Alexander Osterwalder.
               </p>
             </div>
 
-            <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-[#DCE6DA] bg-[#DCE6DA] sm:grid-cols-2 lg:grid-cols-3">
-              {telas.map((t) => (
-                <div key={t.numero} className="bg-[#F6F2E7] p-7">
-                  <h3 className="mt-2 text-[16px] font-semibold text-[#6FA37E]">
-                    {t.titulo}
-                  </h3>
-                  <p className="mt-2 text-[14px] leading-relaxed text-[#4B5B52]">
-                    {t.texto}
-                  </p>
-                </div>
-              ))}
+            <div className="mt-14 overflow-x-auto rounded-2xl border border-[#DCE6DA]">
+              <table className="w-full min-w-[640px] border-collapse text-left text-[14px]">
+                <thead>
+                  <tr className="border-b border-[#DCE6DA] bg-[#F6F2E7] text-[#6C7A6F]">
+                    <th className="px-6 py-4 font-medium">Referencial</th>
+                    <th className="px-6 py-4 font-medium">Conceito central</th>
+                    <th className="px-6 py-4 font-medium">
+                      Onde aparece no Jornada Tech
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-[#DCE6DA] bg-white/60">
+                  {metodologia.map((m) => (
+                    <tr key={m.autor}>
+                      <td className="px-6 py-5 align-top font-semibold text-[#16231C]">
+                        {m.autor}
+                      </td>
+                      <td className="px-6 py-5 align-top text-[#4B5B52]">
+                        {m.foco}
+                      </td>
+                      <td className="px-6 py-5 align-top text-[#4B5B52]">
+                        {m.aplicacao}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </section>
@@ -441,22 +394,23 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ---------- CTA final ---------- */}
-        <section className="py-24 md:py-32">
-          <div className="mx-auto max-w-3xl px-6 text-center">
-            <Sparkles className="mx-auto h-6 w-6 text-[#6FA37E]" aria-hidden />
-            <h2 className="mt-5 font-[family-name:var(--font-display)] text-[32px] leading-tight tracking-tight text-[#16231C] md:text-[42px]">
-              Seu primeiro Canvas de carreira leva menos de 15 minutos
+        {/* ---------- Sorteio: Evento Conexão ---------- */}
+        <section id="sorteio" className="py-20 md:py-10">
+          <div className="mx-auto max-w-4xl px-6 text-center">
+            <h2 className="mt-6 font-[family-name:var(--font-display)] text-[32px] leading-tight tracking-tight text-[#16231C] md:text-[40px]">
+              Complete seu Canvas e concorra a um ingresso do Evento Conexão
             </h2>
-            <p className="mx-auto mt-4 max-w-md text-[16px] leading-relaxed text-[#4B5B52]">
-              Comece pela autoavaliação e descubra hoje o que mais vale a pena
-              desenvolver esta semana.
+            <p className="mx-auto mt-4 max-w-xl text-[16px] leading-relaxed text-[#4B5B52]">
+              Todo aluno que preencher o Canvas de Carreira até o fim entra
+              automaticamente no sorteio de ingressos para o Evento Conexão. É
+              mais um motivo para não deixar seu plano de carreira para depois.
             </p>
+
             <Link
               href="/login"
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#2F6B45] px-7 py-3.5 text-[15px] font-semibold text-[#F6F2E7] transition-colors hover:bg-[#26582F]"
             >
-              Criar meu Canvas de carreira
+              Quero concorrer ao ingresso
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
           </div>
@@ -477,15 +431,7 @@ export default function Home() {
 
           <div className="flex items-center gap-2 text-[13px] text-[#6C7A6F]">
             <GraduationCap className="h-4 w-4" aria-hidden />
-            <span>
-              Projeto de extensão em parceria com o curso de Análise e
-              Desenvolvimento de Sistemas
-            </span>
-          </div>
-
-          <div className="flex items-center gap-2 text-[13px] text-[#6C7A6F]">
-            <TrendingUp className="h-4 w-4" aria-hidden />
-            <span>Painel do orientador em desenvolvimento</span>
+            <span>Projeto de extensão do Curso de ADS.</span>
           </div>
         </div>
       </footer>
