@@ -75,7 +75,7 @@ export default function PlanoDeAcaoPage() {
 
   function finalizarJornada() {
     // Sem backend nesta entrega — apenas encaminha ao painel.
-    router.push("/panel");
+    router.push("/dashboard");
   }
 
   return (
@@ -181,7 +181,7 @@ export default function PlanoDeAcaoPage() {
 
       <div className="mt-14 flex items-center justify-between">
         <Link
-          href="/onboarding/canvas"
+          href="/canvas"
           className="inline-flex items-center gap-1.5 text-[14px] font-medium text-[#4B5B52] transition-colors hover:text-[#16231C]"
         >
           <ArrowLeft className="h-4 w-4" aria-hidden />

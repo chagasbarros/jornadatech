@@ -138,13 +138,6 @@ export default function QuemSouEuPage() {
 
       <div className="mt-14 flex items-center justify-between">
         <Link
-          href="/onboarding/boas-vindas"
-          className="inline-flex items-center gap-1.5 text-[14px] font-medium text-[#4B5B52] transition-colors hover:text-[#16231C]"
-        >
-          <ArrowLeft className="h-4 w-4" aria-hidden />
-          Voltar
-        </Link>
-        <Link
           href="/field-interest"
           className="inline-flex items-center gap-2 rounded-full bg-[#2F6B45] px-6 py-3 text-[15px] font-semibold text-[#F6F2E7] transition-colors hover:bg-[#26582F] mb-4"
         >

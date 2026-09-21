@@ -141,7 +141,7 @@ export default function AreasInteressePage() {
 
       <div className="mt-14 flex items-center justify-between">
         <Link
-          href="/onboarding/quem-sou-eu"
+          href="/self"
           className="inline-flex items-center gap-1.5 text-[14px] font-medium text-[#4B5B52] transition-colors hover:text-[#16231C]"
         >
           <ArrowLeft className="h-4 w-4" aria-hidden />
