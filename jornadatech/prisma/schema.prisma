@@ -6,34 +6,96 @@ datasource db {
   provider = "postgresql"
 }
 
+// Mantenha em sincronia com STEPS em lib/journey.ts.
+enum JourneyStep {
+  SELF
+  FIELD_INTEREST
+  SELF_EVALUATION
+  CANVAS
+  ACTION_PLAN
+  DONE
+}
+
+enum GoalHorizon {
+  SHORT
+  MEDIUM
+}
+
 model User {
-  id         String      @id @default(cuid())
-  email      String      @unique
-  createdAt  DateTime    @default(now())
-  loginCodes LoginCode[]
-  sessions   Session[]
+  /// Mesmo id de auth.users no Supabase.
+  id              String      @id @db.Uuid
+  email           String      @unique
+  currentStep     JourneyStep @default(SELF)
+  completedAt     DateTime?
+  /// Id do perfil em lib/career/catalog.ts.
+  targetProfileId String?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  selfProfile SelfProfile?
+  assessments SkillAssessment[]
+  canvas      CareerCanvas?
+  goals       ActionGoal[]
+  feedback    JourneyFeedback?
 }
 
-model LoginCode {
-  id         String    @id @default(cuid())
-  userId     String
-  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  codeHash   String
-  expiresAt  DateTime
-  consumedAt DateTime?
-  attempts   Int       @default(0)
-  createdAt  DateTime  @default(now())
-
-  @@index([userId])
+model SelfProfile {
+  userId      String   @id @db.Uuid
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  semester    String
+  motivation  String
+  curiosities String[]
+  updatedAt   DateTime @updatedAt
 }
 
-model Session {
-  id        String   @id @default(cuid())
-  userId    String
+model SkillAssessment {
+  userId    String   @db.Uuid
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  tokenHash String   @unique
-  expiresAt DateTime
-  createdAt DateTime @default(now())
+  /// Id da competência em lib/career/catalog.ts.
+  skillId   String
+  /// 0 a 5.
+  level     Int
+  updatedAt DateTime @updatedAt
+
+  @@id([userId, skillId])
+}
+
+model CareerCanvas {
+  userId          String   @id @db.Uuid
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  objective       String
+  /// Lista final do aluno (editável, aceita itens livres).
+  skillsToDevelop String[]
+  /// Ids da trilha sugerida no momento em que o canvas foi salvo.
+  suggestedSkills String[]
+  networking      String
+  experiences     String
+  portfolio       String
+  updatedAt       DateTime @updatedAt
+}
+
+model ActionGoal {
+  id        String      @id @default(cuid())
+  userId    String      @db.Uuid
+  user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  position  Int
+  horizon   GoalHorizon
+  objective String
+  action    String
+  deadline  String
+  indicator String
+  done      Boolean     @default(false)
+  suggested Boolean     @default(false)
+  createdAt DateTime    @default(now())
 
   @@index([userId])
+}
+
+model JourneyFeedback {
+  userId       String   @id @db.Uuid
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  nextAction   String
+  /// 1 a 5.
+  satisfaction Int?
+  createdAt    DateTime @default(now())
 }
