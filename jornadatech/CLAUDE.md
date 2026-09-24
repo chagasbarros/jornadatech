@@ -93,7 +93,9 @@ Ordem das etapas (enum `JourneyStep`):
 3. `/self-evaluation` — autoavaliação das competências **do perfil escolhido** (0 a 5).
 4. `/canvas` — Canvas de Carreira, com "competências a desenvolver" pré-preenchido.
 5. `/action-plan` — metas de curto e médio prazo (objetivo, ação, prazo, indicador).
-6. `/dashboard` — painel com canvas e plano salvos; permite imprimir.
+6. `/dashboard` — Canvas de Carreira com os 10 blocos do projeto (`app/dashboard/career-canvas.tsx`,
+   spec em `public/documentacao-canvas-carreira.pdf`), metas marcáveis e análise de lacunas.
+   Imprime só o Canvas, em uma página A4 paisagem. O nome do aluno não é exibido.
 
 Regras de navegação (implementadas em `requireStep`):
 
