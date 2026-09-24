@@ -157,4 +157,24 @@ describe("catálogo", () => {
       expect(getProfileSkills(profile)).toHaveLength(ids.length);
     },
   );
+
+  // Decisões da curadoria (public/curadoria-competencias.pdf).
+  it.each(PROFILES.map((p) => [p.id, p] as const))(
+    "perfil %s tem 9 a 10 competências, com valores iguais",
+    (_, profile) => {
+      expect(profile.skills.length).toBeGreaterThanOrEqual(9);
+      expect(profile.skills.length).toBeLessThanOrEqual(10);
+      const [first] = profile.skills;
+      for (const s of profile.skills) {
+        expect(s).toMatchObject({ w: first.w, m: first.m, d: first.d });
+      }
+    },
+  );
+
+  it("toda competência do catálogo é usada por algum perfil", () => {
+    const used = new Set(
+      PROFILES.flatMap((p) => p.skills.map((s) => s.skillId)),
+    );
+    expect(SKILLS.filter((s) => !used.has(s.id))).toEqual([]);
+  });
 });
