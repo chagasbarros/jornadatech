@@ -116,6 +116,11 @@ perfis e autoavaliação. Cada perfil lista suas competências com:
 `w` peso (normalizado no código: `w_i / Σw`), `m` proficiência mínima (1–5),
 `d` prioridade de mercado (1–3). Um teste valida o catálogo.
 
+Curadoria (`public/curadoria-competencias.pdf`): 6 perfis, 9 a 10 competências cada, nível
+estágio/júnior. Por decisão da revisão, todas as competências de um perfil usam valores
+iguais (`equalSkills`: `w = 1/n`, `m = 3`, `d = 2`). Não reutilizar ids removidos
+(ex.: `trabalho-equipe`) — notas antigas ficam no banco com esse id.
+
 Para cada competência `i` do perfil, com `a_i` = nota do aluno (0–5; ausente = 0):
 
 - `gap_i = max(0, m_i − a_i)` (inteiro, em níveis)
@@ -167,6 +172,5 @@ Comunicação fora da trilha.
 
 ## Pendências
 
-- Valores de w, m e d do catálogo são provisórios (`// TODO: curadoria` em `lib/career/catalog.ts`).
 - E2E cobre só rotas públicas, redirecionamentos e validação do login. O fluxo completo da
   jornada precisa de um usuário de teste no Supabase.
