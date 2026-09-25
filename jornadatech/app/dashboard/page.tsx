@@ -39,7 +39,7 @@ export default async function PainelPage() {
     canvas !== null && !sameItems(trackIds, canvas.suggestedSkills);
 
   return (
-    <div className="min-h-screen bg-[#F8F7F3] text-[#123F45]">
+    <div className="min-h-screen bg-[#F8F7F3] text-[#123F45] print:min-h-0">
       {/* Impressão: só o Canvas, em uma página A4 paisagem. */}
       <style>{"@page { size: A4 landscape; margin: 8mm; }"}</style>
       <BrandHeader>
@@ -72,7 +72,7 @@ export default async function PainelPage() {
           </Link>
         )}
 
-        <div className="mt-8">
+        <div className="mt-8 print:mt-0">
           <CareerCanvas
             profile={profile}
             analysis={analysis}
@@ -108,7 +108,7 @@ export default async function PainelPage() {
           ))}
         </div>
 
-        <p className="mt-3 hidden text-[10px] text-[#8FA3A6] print:block">
+        <p className="mt-1.5 hidden text-[9px] leading-tight text-[#8FA3A6] print:block">
           Jornada Tech · {user.email} · Área: {profile.title} · Trilha:{" "}
           {trackIds.map(skillName).join(", ") || "sem lacunas"}
         </p>

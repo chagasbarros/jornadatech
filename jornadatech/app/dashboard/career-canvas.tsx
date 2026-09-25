@@ -210,7 +210,7 @@ function Nivel({ valor, cor }: { valor: number; cor: string }) {
 function Metas({ goals, href }: { goals: ActionGoal[]; href: string }) {
   if (goals.length === 0) return <Vazio href={href} />;
   return (
-    <ul className="grid gap-x-4 gap-y-3 sm:grid-cols-2 print:grid-cols-2">
+    <ul className="grid gap-x-4 gap-y-3 sm:grid-cols-2 print:grid-cols-3">
       {goals.map((g) => (
         <li
           key={g.id}
@@ -274,7 +274,7 @@ export function CareerCanvas({
   return (
     <section
       aria-labelledby="canvas-titulo"
-      className="rounded-[28px] bg-[#F8F7F3] print:[zoom:0.62] print:[-webkit-print-color-adjust:exact] print:[print-color-adjust:exact]"
+      className="rounded-[28px] bg-[#F8F7F3] print:[zoom:0.6] print:[-webkit-print-color-adjust:exact] print:[print-color-adjust:exact]"
     >
       {/* Cabeçalho */}
       <header className="relative overflow-hidden rounded-3xl bg-grad-brand px-5 py-5 text-white shadow-card md:px-7">
