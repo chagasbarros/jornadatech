@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Identidade visual (public/identidade_visual_plano_de_carreira_ads.md) */
+/* Identidade visual (docs/identidade_visual_plano_de_carreira_ads.md) */
 
 /* Verde → Roxo: cabeçalhos, cards de destaque e áreas estruturais */
 @utility bg-grad-brand {

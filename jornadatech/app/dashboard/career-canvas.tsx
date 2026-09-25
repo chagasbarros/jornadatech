@@ -35,7 +35,7 @@ import { CURIOSITIES, SEMESTERS } from "@/lib/validation/self";
 import { GoalToggle } from "./goal-toggle";
 
 // Canvas de Carreira com os 10 blocos do projeto
-// (public/documentacao-canvas-carreira.pdf), no visual de public/modelo-do-canvas.jpeg.
+// (docs/documentacao-canvas-carreira.pdf), no visual de docs/modelo-do-canvas.jpeg.
 
 const RECOMMENDATION_SHORT: Record<Recommendation, string> = {
   COURSE: "Curso estruturado",

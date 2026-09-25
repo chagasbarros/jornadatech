@@ -18,7 +18,7 @@ import {
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-// Landing page, baseada em public/exemplo-de-chamadas.pdf.
+// Landing page, baseada em docs/exemplo-de-chamadas.pdf.
 // A versão anterior está guardada em app/_landing-antiga/page.tsx (fora do roteamento).
 
 export const metadata: Metadata = {
