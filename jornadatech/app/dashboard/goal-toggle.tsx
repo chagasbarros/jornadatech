@@ -22,8 +22,8 @@ export function GoalToggle({ goalId, done }: { goalId: string; done: boolean }) 
       className={
         "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border transition-colors " +
         (optimisticDone
-          ? "border-[#2F6B45] bg-[#2F6B45] text-[#F6F2E7]"
-          : "border-[#B9C9BE] hover:border-[#2F6B45]")
+          ? "border-[#0B5A48] bg-[#0B5A48] text-[#F8F7F3]"
+          : "border-[#B7C4BE] hover:border-[#0B5A48]")
       }
     >
       {optimisticDone && <Check className="h-3 w-3" aria-hidden />}

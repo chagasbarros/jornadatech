@@ -13,7 +13,7 @@ let seq = 0;
 const nextKey = () => `meta-${seq++}`;
 
 const FIELD_CLASS =
-  "w-full rounded-lg border border-[#DCE6DA] bg-white/70 px-3 py-2 text-[13px] text-[#16231C] placeholder:text-[#8C978F] outline-none transition-colors focus:border-[#2F6B45] focus:bg-white";
+  "w-full rounded-lg border border-[#D7DDD8] bg-white/70 px-3 py-2 text-[13px] text-[#123F45] placeholder:text-[#8FA3A6] outline-none transition-colors focus:border-[#0B5A48] focus:bg-white";
 
 function novaMeta(): Meta {
   return {
@@ -78,10 +78,10 @@ export default function ActionPlanForm({ editing, initialGoals }: Props) {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <h1 className="mt-10 font-[family-name:var(--font-display)] text-[28px] leading-tight tracking-tight text-[#16231C] md:text-[34px]">
+      <h1 className="mt-10 font-[family-name:var(--font-display)] text-[28px] leading-tight tracking-tight text-[#123F45] md:text-[34px]">
         Seu plano de ação
       </h1>
-      <p className="mt-3 text-[15px] leading-relaxed text-[#4B5B52]">
+      <p className="mt-3 text-[15px] leading-relaxed text-[#456A70]">
         Transformamos sua trilha em metas de curto e médio prazo. Cada meta
         tem um prazo e um indicador para você saber quando chegou lá.
       </p>
@@ -90,7 +90,7 @@ export default function ActionPlanForm({ editing, initialGoals }: Props) {
         {metas.map((m, i) => (
           <div
             key={m.key}
-            className="rounded-2xl border border-[#DCE6DA] bg-white/50 p-4"
+            className="rounded-2xl border border-[#D7DDD8] bg-white/50 p-4"
           >
             <div className="flex items-center justify-between gap-3">
               <div className="flex items-center gap-3">
@@ -102,8 +102,8 @@ export default function ActionPlanForm({ editing, initialGoals }: Props) {
                   className={
                     "flex h-5 w-5 items-center justify-center rounded-full border transition-colors " +
                     (m.done
-                      ? "border-[#2F6B45] bg-[#2F6B45] text-[#F6F2E7]"
-                      : "border-[#B9C9BE]")
+                      ? "border-[#0B5A48] bg-[#0B5A48] text-[#F8F7F3]"
+                      : "border-[#B7C4BE]")
                   }
                 >
                   {m.done && <Check className="h-3 w-3" aria-hidden />}
@@ -118,7 +118,7 @@ export default function ActionPlanForm({ editing, initialGoals }: Props) {
                     )
                   }
                   aria-label="Horizonte"
-                  className="rounded-full border border-[#DCE6DA] bg-white/70 px-3 py-1 text-[12px] font-medium text-[#354238] outline-none focus:border-[#2F6B45]"
+                  className="rounded-full border border-[#D7DDD8] bg-white/70 px-3 py-1 text-[12px] font-medium text-[#2A5359] outline-none focus:border-[#0B5A48]"
                 >
                   {HORIZONS.map((h) => (
                     <option key={h.id} value={h.id}>
@@ -127,7 +127,7 @@ export default function ActionPlanForm({ editing, initialGoals }: Props) {
                   ))}
                 </select>
                 {m.suggested && (
-                  <span className="inline-flex items-center gap-1 text-[11px] font-medium text-[#26582F]">
+                  <span className="inline-flex items-center gap-1 text-[11px] font-medium text-[#073D35]">
                     <Sparkles className="h-3 w-3" aria-hidden />
                     Sugerido pela sua trilha
                   </span>
@@ -139,7 +139,7 @@ export default function ActionPlanForm({ editing, initialGoals }: Props) {
                   setMetas((atual) => atual.filter((x) => x.key !== m.key))
                 }
                 aria-label={`Remover meta ${i + 1}`}
-                className="rounded-lg p-1.5 text-[#8C978F] hover:bg-[#EDE9DC] hover:text-[#16231C]"
+                className="rounded-lg p-1.5 text-[#8FA3A6] hover:bg-[#ECEBE5] hover:text-[#123F45]"
               >
                 <Trash2 className="h-4 w-4" aria-hidden />
               </button>
@@ -185,7 +185,7 @@ export default function ActionPlanForm({ editing, initialGoals }: Props) {
         <button
           type="button"
           onClick={() => setMetas((atual) => [...atual, novaMeta()])}
-          className="flex w-full items-center justify-center gap-2 rounded-2xl border border-dashed border-[#B9C9BE] px-4 py-3 text-[13px] font-medium text-[#354238] transition-colors hover:bg-white/50"
+          className="flex w-full items-center justify-center gap-2 rounded-2xl border border-dashed border-[#B7C4BE] px-4 py-3 text-[13px] font-medium text-[#2A5359] transition-colors hover:bg-white/50"
         >
           <Plus className="h-4 w-4" aria-hidden />
           Adicionar meta
@@ -193,7 +193,7 @@ export default function ActionPlanForm({ editing, initialGoals }: Props) {
       </div>
 
       {!podeSalvar && metas.length > 0 && (
-        <p className="mt-3 text-[12px] text-[#6C7A6F]">
+        <p className="mt-3 text-[12px] text-[#5F7F84]">
           Preencha objetivo, ação, prazo e indicador de todas as metas.
         </p>
       )}
@@ -215,13 +215,13 @@ export default function ActionPlanForm({ editing, initialGoals }: Props) {
           role="dialog"
           aria-modal="true"
           aria-labelledby="fechamento-titulo"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-[#0E2A20]/50 px-6"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-[#073D35]/50 px-6"
         >
-          <div className="w-full max-w-md rounded-[28px] bg-[#F6F2E7] p-7">
+          <div className="w-full max-w-md rounded-[28px] bg-[#F8F7F3] p-7">
             <div className="flex items-start justify-between">
               <h2
                 id="fechamento-titulo"
-                className="font-[family-name:var(--font-display)] text-[22px] leading-tight text-[#16231C]"
+                className="font-[family-name:var(--font-display)] text-[22px] leading-tight text-[#123F45]"
               >
                 Antes de continuar
               </h2>
@@ -229,7 +229,7 @@ export default function ActionPlanForm({ editing, initialGoals }: Props) {
                 type="button"
                 onClick={() => setMostrarFechamento(false)}
                 aria-label="Fechar"
-                className="rounded-full p-1.5 text-[#8C978F] hover:bg-[#EDE9DC] hover:text-[#16231C]"
+                className="rounded-full p-1.5 text-[#8FA3A6] hover:bg-[#ECEBE5] hover:text-[#123F45]"
               >
                 <X className="h-4 w-4" aria-hidden />
               </button>
@@ -237,7 +237,7 @@ export default function ActionPlanForm({ editing, initialGoals }: Props) {
 
             <label
               htmlFor="proximo-passo"
-              className="mb-1.5 mt-5 block text-[13px] font-medium text-[#354238]"
+              className="mb-1.5 mt-5 block text-[13px] font-medium text-[#2A5359]"
             >
               Minha próxima ação é...
             </label>
@@ -248,10 +248,10 @@ export default function ActionPlanForm({ editing, initialGoals }: Props) {
               value={proximoPasso}
               onChange={(e) => setProximoPasso(e.target.value)}
               placeholder="Ex.: começar o curso de JavaScript nesta semana"
-              className="w-full resize-none rounded-xl border border-[#DCE6DA] bg-white/70 p-3 text-[14px] text-[#16231C] placeholder:text-[#8C978F] outline-none transition-colors focus:border-[#2F6B45] focus:ring-2 focus:ring-[#BFE3CE]"
+              className="w-full resize-none rounded-xl border border-[#D7DDD8] bg-white/70 p-3 text-[14px] text-[#123F45] placeholder:text-[#8FA3A6] outline-none transition-colors focus:border-[#0B5A48] focus:ring-2 focus:ring-[#C5E3D9]"
             />
 
-            <p className="mb-2 mt-5 text-[13px] font-medium text-[#354238]">
+            <p className="mb-2 mt-5 text-[13px] font-medium text-[#2A5359]">
               O que achou dessa experiência?
             </p>
             <div className="flex gap-2">
@@ -264,8 +264,8 @@ export default function ActionPlanForm({ editing, initialGoals }: Props) {
                   className={
                     "flex h-10 w-10 items-center justify-center rounded-full border text-[14px] font-semibold transition-colors " +
                     (satisfacao === n
-                      ? "border-[#2F6B45] bg-[#2F6B45] text-[#F6F2E7]"
-                      : "border-[#DCE6DA] bg-white/50 text-[#354238] hover:border-[#B9C9BE]")
+                      ? "border-[#0B5A48] bg-[#0B5A48] text-[#F8F7F3]"
+                      : "border-[#D7DDD8] bg-white/50 text-[#2A5359] hover:border-[#B7C4BE]")
                   }
                 >
                   {n}
@@ -277,7 +277,7 @@ export default function ActionPlanForm({ editing, initialGoals }: Props) {
               type="button"
               onClick={() => salvar(true)}
               disabled={pending}
-              className="mt-7 w-full rounded-full bg-[#2F6B45] py-3 text-[15px] font-semibold text-[#F6F2E7] transition-colors hover:bg-[#26582F] disabled:opacity-60"
+              className="mt-7 w-full rounded-full bg-[#0B5A48] py-3 text-[15px] font-semibold text-[#F8F7F3] transition-colors hover:bg-[#073D35] disabled:opacity-60"
             >
               {pending ? "Salvando..." : "Enviar e ver meu painel"}
             </button>

@@ -1,1 +1,32 @@
 @import "tailwindcss";
+
+/* Identidade visual (public/identidade_visual_plano_de_carreira_ads.md) */
+
+/* Verde → Roxo: cabeçalhos, cards de destaque e áreas estruturais */
+@utility bg-grad-brand {
+  background-image: linear-gradient(135deg, #0b5a48 0%, #155f50 42%, #4a4165 100%);
+}
+
+/* Laranja → Roxo: barra de compatibilidade */
+@utility bg-grad-compat {
+  background-image: linear-gradient(90deg, #f58e52 0%, #e87872 48%, #73519a 100%);
+}
+
+/* Verde → Roxo → Laranja: linhas e detalhes decorativos */
+@utility bg-grad-deco {
+  background-image: linear-gradient(135deg, #0b5a48 0%, #4a4165 68%, #f58e52 100%);
+}
+
+@utility shadow-card {
+  box-shadow: 0 4px 18px rgba(18, 63, 69, 0.08);
+}
+
+/* Gradientes e fundos coloridos também na impressão do Canvas */
+@media print {
+  .bg-grad-brand,
+  .bg-grad-compat,
+  .bg-grad-deco {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}

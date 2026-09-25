@@ -39,7 +39,7 @@ export default async function PainelPage() {
     canvas !== null && !sameItems(trackIds, canvas.suggestedSkills);
 
   return (
-    <div className="min-h-screen bg-[#F6F2E7] text-[#16231C]">
+    <div className="min-h-screen bg-[#F8F7F3] text-[#123F45]">
       {/* Impressão: só o Canvas, em uma página A4 paisagem. */}
       <style>{"@page { size: A4 landscape; margin: 8mm; }"}</style>
       <BrandHeader>
@@ -47,10 +47,10 @@ export default async function PainelPage() {
       </BrandHeader>
 
       <main className="mx-auto max-w-6xl px-6 py-12 md:py-16 print:py-0">
-        <h1 className="font-[family-name:var(--font-display)] text-[30px] print:hidden leading-tight tracking-tight text-[#16231C] md:text-[36px]">
+        <h1 className="font-[family-name:var(--font-display)] text-[30px] print:hidden leading-tight tracking-tight text-[#123F45] md:text-[36px]">
           Seu plano de carreira
         </h1>
-        <p className="mt-2 max-w-lg text-[15px] leading-relaxed text-[#4B5B52] print:hidden">
+        <p className="mt-2 max-w-lg text-[15px] leading-relaxed text-[#456A70] print:hidden">
           Acompanhe sua evolução e edite qualquer parte do seu Canvas de
           Carreira, sem refazer tudo do início.
         </p>
@@ -58,7 +58,7 @@ export default async function PainelPage() {
         {analysis.unassessed.length > 0 && (
           <Link
             href="/self-evaluation"
-            className="mt-6 flex items-center gap-3 rounded-2xl border border-[#E8D9A8] bg-[#FBF3DA] p-4 text-[14px] text-[#6B5516] print:hidden"
+            className="mt-6 flex items-center gap-3 rounded-2xl border border-[#F6C9A6] bg-[#FDEEE3] p-4 text-[14px] text-[#8A4A1F] print:hidden"
           >
             <AlertCircle className="h-4 w-4 shrink-0" aria-hidden />
             <span className="flex-1">
@@ -97,18 +97,18 @@ export default async function PainelPage() {
             <Link
               key={href}
               href={href}
-              className="flex items-center justify-between rounded-2xl border border-[#DCE6DA] bg-white/50 p-5 transition-colors hover:border-[#B9C9BE]"
+              className="flex items-center justify-between rounded-2xl border border-[#D7DDD8] bg-white/50 p-5 transition-colors hover:border-[#B7C4BE]"
             >
-              <span className="flex items-center gap-3 text-[14px] font-semibold text-[#16231C]">
-                <Icon className="h-4 w-4 text-[#26582F]" aria-hidden />
+              <span className="flex items-center gap-3 text-[14px] font-semibold text-[#123F45]">
+                <Icon className="h-4 w-4 text-[#073D35]" aria-hidden />
                 {label}
               </span>
-              <ArrowRight className="h-4 w-4 text-[#8C978F]" aria-hidden />
+              <ArrowRight className="h-4 w-4 text-[#8FA3A6]" aria-hidden />
             </Link>
           ))}
         </div>
 
-        <p className="mt-3 hidden text-[10px] text-[#8C978F] print:block">
+        <p className="mt-3 hidden text-[10px] text-[#8FA3A6] print:block">
           Jornada Tech · {user.email} · Área: {profile.title} · Trilha:{" "}
           {trackIds.map(skillName).join(", ") || "sem lacunas"}
         </p>

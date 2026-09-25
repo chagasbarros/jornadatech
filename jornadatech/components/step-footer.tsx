@@ -36,7 +36,7 @@ export function StepFooter({
         {back ? (
           <Link
             href={back}
-            className="inline-flex items-center gap-1.5 text-[14px] font-medium text-[#4B5B52] transition-colors hover:text-[#16231C]"
+            className="inline-flex items-center gap-1.5 text-[14px] font-medium text-[#456A70] transition-colors hover:text-[#123F45]"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden />
             {editing ? "Cancelar" : "Voltar"}
@@ -48,7 +48,7 @@ export function StepFooter({
           type={onSubmit ? "button" : "submit"}
           onClick={onSubmit}
           disabled={pending || disabled}
-          className="inline-flex items-center gap-2 rounded-full bg-[#2F6B45] px-6 py-3 text-[15px] font-semibold text-[#F6F2E7] transition-colors hover:bg-[#26582F] disabled:cursor-not-allowed disabled:bg-[#EDE9DC] disabled:text-[#8C978F]"
+          className="inline-flex items-center gap-2 rounded-full bg-[#0B5A48] px-6 py-3 text-[15px] font-semibold text-[#F8F7F3] transition-colors hover:bg-[#073D35] disabled:cursor-not-allowed disabled:bg-[#ECEBE5] disabled:text-[#8FA3A6]"
         >
           {pending ? "Salvando..." : editing ? "Salvar" : label}
           {!pending && !editing && <ArrowRight className="h-4 w-4" aria-hidden />}

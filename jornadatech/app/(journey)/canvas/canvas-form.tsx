@@ -7,10 +7,10 @@ import type { CanvasInput } from "@/lib/validation/career";
 import { saveCanvas } from "./actions";
 
 const INPUT_CLASS =
-  "w-full rounded-xl border border-[#DCE6DA] bg-white/70 px-4 py-3 text-[14px] text-[#16231C] placeholder:text-[#8C978F] outline-none transition-colors focus:border-[#2F6B45] focus:ring-2 focus:ring-[#BFE3CE]";
+  "w-full rounded-xl border border-[#D7DDD8] bg-white/70 px-4 py-3 text-[14px] text-[#123F45] placeholder:text-[#8FA3A6] outline-none transition-colors focus:border-[#0B5A48] focus:ring-2 focus:ring-[#C5E3D9]";
 
 const TEXTAREA_CLASS =
-  "w-full resize-none rounded-xl border border-[#DCE6DA] bg-white/70 p-3 text-[14px] text-[#16231C] placeholder:text-[#8C978F] outline-none transition-colors focus:border-[#2F6B45] focus:ring-2 focus:ring-[#BFE3CE]";
+  "w-full resize-none rounded-xl border border-[#D7DDD8] bg-white/70 p-3 text-[14px] text-[#123F45] placeholder:text-[#8FA3A6] outline-none transition-colors focus:border-[#0B5A48] focus:ring-2 focus:ring-[#C5E3D9]";
 
 function BlocoCanvas({
   titulo,
@@ -24,15 +24,15 @@ function BlocoCanvas({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-2xl border border-[#DCE6DA] bg-white/50 p-5">
+    <div className="rounded-2xl border border-[#D7DDD8] bg-white/50 p-5">
       <label
         htmlFor={htmlFor}
-        className="block text-[14px] font-semibold text-[#16231C]"
+        className="block text-[14px] font-semibold text-[#123F45]"
       >
         {titulo}
       </label>
       {descricao && (
-        <p className="mt-1 text-[13px] text-[#6C7A6F]">{descricao}</p>
+        <p className="mt-1 text-[13px] text-[#5F7F84]">{descricao}</p>
       )}
       <div className="mt-4">{children}</div>
     </div>
@@ -82,12 +82,12 @@ export default function CanvasForm({
 
   return (
     <div className="mx-auto max-w-3xl">
-      <h1 className="mt-10 font-[family-name:var(--font-display)] text-[28px] leading-tight tracking-tight text-[#16231C] md:text-[34px]">
+      <h1 className="mt-10 font-[family-name:var(--font-display)] text-[28px] leading-tight tracking-tight text-[#123F45] md:text-[34px]">
         Seu resultado
       </h1>
       <div className="mt-6">{summary}</div>
 
-      <h2 className="mt-14 font-[family-name:var(--font-display)] text-[24px] leading-tight tracking-tight text-[#16231C] md:text-[28px]">
+      <h2 className="mt-14 font-[family-name:var(--font-display)] text-[24px] leading-tight tracking-tight text-[#123F45] md:text-[28px]">
         Seu Canvas de Carreira
       </h2>
 
@@ -110,7 +110,7 @@ export default function CanvasForm({
         </div>
 
         <BlocoCanvas titulo="Competências a desenvolver" htmlFor="nova-competencia">
-          <div className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-[#BFE3CE]/50 px-3 py-1 text-[12px] font-medium text-[#26582F]">
+          <div className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-[#C5E3D9]/50 px-3 py-1 text-[12px] font-medium text-[#073D35]">
             <Sparkles className="h-3.5 w-3.5" aria-hidden />
             Sugerido com base no seu resultado
           </div>
@@ -118,7 +118,7 @@ export default function CanvasForm({
             {competencias.map((c) => (
               <span
                 key={c}
-                className="inline-flex items-center gap-1.5 rounded-full border border-[#DCE6DA] bg-white/70 py-1.5 pl-3 pr-2 text-[13px] font-medium text-[#354238]"
+                className="inline-flex items-center gap-1.5 rounded-full border border-[#D7DDD8] bg-white/70 py-1.5 pl-3 pr-2 text-[13px] font-medium text-[#2A5359]"
               >
                 {c}
                 <button
@@ -130,7 +130,7 @@ export default function CanvasForm({
                     )
                   }
                   aria-label={`Remover ${c}`}
-                  className="rounded-full p-0.5 text-[#8C978F] hover:bg-[#EDE9DC] hover:text-[#16231C]"
+                  className="rounded-full p-0.5 text-[#8FA3A6] hover:bg-[#ECEBE5] hover:text-[#123F45]"
                 >
                   <X className="h-3 w-3" aria-hidden />
                 </button>
@@ -145,7 +145,7 @@ export default function CanvasForm({
                   key={s}
                   type="button"
                   onClick={() => adicionarCompetencia(s)}
-                  className="inline-flex items-center gap-1 rounded-full border border-dashed border-[#6FA37E] px-3 py-1.5 text-[12px] font-medium text-[#26582F] hover:bg-[#BFE3CE]/30"
+                  className="inline-flex items-center gap-1 rounded-full border border-dashed border-[#3F8A76] px-3 py-1.5 text-[12px] font-medium text-[#073D35] hover:bg-[#C5E3D9]/30"
                 >
                   <Plus className="h-3 w-3" aria-hidden />
                   {s}
@@ -169,7 +169,7 @@ export default function CanvasForm({
                 }
               }}
               placeholder="Adicionar outra competência"
-              className="min-w-0 flex-1 rounded-xl border border-[#DCE6DA] bg-white/70 px-4 py-2.5 text-[13px] text-[#16231C] placeholder:text-[#8C978F] outline-none transition-colors focus:border-[#2F6B45] focus:ring-2 focus:ring-[#BFE3CE]"
+              className="min-w-0 flex-1 rounded-xl border border-[#D7DDD8] bg-white/70 px-4 py-2.5 text-[13px] text-[#123F45] placeholder:text-[#8FA3A6] outline-none transition-colors focus:border-[#0B5A48] focus:ring-2 focus:ring-[#C5E3D9]"
             />
             <button
               type="button"
@@ -177,7 +177,7 @@ export default function CanvasForm({
                 adicionarCompetencia(novaCompetencia);
                 setNovaCompetencia("");
               }}
-              className="rounded-xl border border-[#DCE6DA] px-4 text-[13px] font-medium text-[#354238] transition-colors hover:border-[#B9C9BE]"
+              className="rounded-xl border border-[#D7DDD8] px-4 text-[13px] font-medium text-[#2A5359] transition-colors hover:border-[#B7C4BE]"
             >
               Adicionar
             </button>

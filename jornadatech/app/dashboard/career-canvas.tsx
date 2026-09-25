@@ -8,7 +8,7 @@ import type {
 } from "@prisma/client";
 import { MAX_LEVEL, getSkill, type Profile } from "@/lib/career/catalog";
 import type { GapAnalysis, Recommendation } from "@/lib/career/gap-analysis";
-import { skillName } from "@/components/gap-summary";
+import { PRIORITY_BADGE, skillName } from "@/components/gap-summary";
 import { SEMESTERS } from "@/lib/validation/self";
 import { GoalToggle } from "./goal-toggle";
 
@@ -66,28 +66,30 @@ function Bloco({
     <section
       className={`flex flex-col rounded-2xl border p-4 break-inside-avoid ${area} ${
         destaque
-          ? "border-[#2F6B45] bg-[#2F6B45] text-[#F6F2E7]"
-          : "border-[#DCE6DA] bg-white/70"
+          ? "border-[#0B5A48] bg-grad-brand text-[#F8F7F3] shadow-card"
+          : "border-[#D7DDD8] bg-white/70 shadow-card"
       }`}
     >
       <div className="flex items-start justify-between gap-2">
-        <h3 className="font-[family-name:var(--font-display)] text-[15px] font-semibold leading-snug">
+        <h3 className="flex items-start gap-2 font-[family-name:var(--font-display)] text-[15px] font-semibold leading-snug">
           <span
-            className={`mr-1.5 font-[family-name:var(--font-body)] text-[11px] font-bold ${
-              destaque ? "text-[#BFE3CE]" : "text-[#6FA37E]"
+            className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full font-[family-name:var(--font-body)] text-[10.5px] font-bold ${
+              destaque
+                ? "bg-white/15 text-[#F8F7F3] ring-1 ring-[#F6B06A]/70"
+                : "bg-[#0B5A48] text-white"
             }`}
           >
             {num}
           </span>
-          {titulo}
+          <span className="pt-0.5">{titulo}</span>
         </h3>
         <Link
           href={href}
           aria-label={`Editar ${titulo}`}
           className={`shrink-0 rounded-full p-1 transition-colors print:hidden ${
             destaque
-              ? "text-[#BFE3CE] hover:bg-white/10"
-              : "text-[#8C978F] hover:bg-[#EEF5EF] hover:text-[#2F6B45]"
+              ? "text-[#C5E3D9] hover:bg-white/10"
+              : "text-[#8FA3A6] hover:bg-[#EAF2EF] hover:text-[#0B5A48]"
           }`}
         >
           <PencilLine className="h-3.5 w-3.5" aria-hidden />
@@ -95,7 +97,7 @@ function Bloco({
       </div>
       <p
         className={`mt-0.5 mb-3 text-[12px] italic ${
-          destaque ? "text-[#BFE3CE]" : "text-[#6C7A6F]"
+          destaque ? "text-[#C5E3D9]" : "text-[#5F7F84]"
         }`}
       >
         {pergunta}
@@ -109,11 +111,11 @@ function Bloco({
 
 function Vazio({ href }: { href: string }) {
   return (
-    <p className="text-[13px] text-[#8C978F]">
+    <p className="text-[13px] text-[#8FA3A6]">
       Ainda não preenchido.{" "}
       <Link
         href={href}
-        className="font-semibold text-[#2F6B45] underline-offset-2 hover:underline print:hidden"
+        className="font-semibold text-[#0B5A48] underline-offset-2 hover:underline print:hidden"
       >
         Preencher
       </Link>
@@ -123,7 +125,7 @@ function Vazio({ href }: { href: string }) {
 
 function Texto({ valor, href }: { valor: string | undefined; href: string }) {
   return valor?.trim() ? (
-    <p className="whitespace-pre-line text-[#354238]">{valor}</p>
+    <p className="whitespace-pre-line text-[#2A5359]">{valor}</p>
   ) : (
     <Vazio href={href} />
   );
@@ -131,7 +133,7 @@ function Texto({ valor, href }: { valor: string | undefined; href: string }) {
 
 function Rotulo({ children }: { children: ReactNode }) {
   return (
-    <p className="mb-1.5 text-[10.5px] font-bold uppercase tracking-wide text-[#6C7A6F]">
+    <p className="mb-1.5 text-[10.5px] font-bold uppercase tracking-wide text-[#5F7F84]">
       {children}
     </p>
   );
@@ -148,7 +150,7 @@ function Nivel({ valor }: { valor: number }) {
         <span
           key={i}
           className={`h-2 w-2 rounded-full ${
-            i < valor ? "bg-[#2F6B45]" : "bg-[#E3EAE3]"
+            i < valor ? "bg-[#0B5A48]" : "bg-[#E3E8E5]"
           }`}
         />
       ))}
@@ -159,7 +161,7 @@ function Nivel({ valor }: { valor: number }) {
 function Metas({ goals, href }: { goals: ActionGoal[]; href: string }) {
   if (goals.length === 0) return <Vazio href={href} />;
   return (
-    <ul className="divide-y divide-dashed divide-[#DCE6DA]">
+    <ul className="divide-y divide-dashed divide-[#D7DDD8]">
       {goals.map((g) => (
         <li key={g.id} className="flex items-start gap-2.5 py-2 first:pt-0">
           <GoalToggle goalId={g.id} done={g.done} />
@@ -167,18 +169,18 @@ function Metas({ goals, href }: { goals: ActionGoal[]; href: string }) {
             <p
               className={
                 "font-semibold " +
-                (g.done ? "text-[#8C978F] line-through" : "text-[#16231C]")
+                (g.done ? "text-[#8FA3A6] line-through" : "text-[#123F45]")
               }
             >
               {g.objective}
               {g.suggested && (
-                <span className="ml-1.5 rounded bg-[#EEF5EF] px-1.5 py-0.5 align-[1px] text-[10px] font-bold uppercase tracking-wide text-[#2F6B45]">
+                <span className="ml-1.5 rounded bg-[#EAF2EF] px-1.5 py-0.5 align-[1px] text-[10px] font-bold uppercase tracking-wide text-[#0B5A48]">
                   Sugerida
                 </span>
               )}
             </p>
-            <p className="text-[#354238]">{g.action}</p>
-            <p className="text-[12px] text-[#6C7A6F]">
+            <p className="text-[#2A5359]">{g.action}</p>
+            <p className="text-[12px] text-[#5F7F84]">
               {g.deadline} · Indicador: {g.indicator}
             </p>
           </div>
@@ -225,7 +227,7 @@ export function CareerCanvas({
           >
             Canvas de Carreira
           </h2>
-          <p className="mt-1 text-[13px] text-[#4B5B52]">
+          <p className="mt-1 text-[13px] text-[#456A70]">
             {[
               selfProfile && SEMESTER_LABEL[selfProfile.semester],
               atualizado && `atualizado em ${atualizado}`,
@@ -235,16 +237,22 @@ export function CareerCanvas({
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2 text-[12px] font-semibold">
-          <span className="rounded-full border border-[#DCE6DA] bg-white/70 px-3 py-1.5">
+          <span className="rounded-full border border-[#D7DDD8] bg-white/70 px-3 py-1.5">
             Área-alvo: {profile.title}
           </span>
-          <span className="rounded-full border border-[#DCE6DA] bg-white/70 px-3 py-1.5">
+          <span className="rounded-full border border-[#D7DDD8] bg-white/70 px-3 py-1.5">
             Metas: {concluidas} de {goals.length}
           </span>
-          <span className="flex items-baseline gap-1.5 rounded-full bg-[#2F6B45] px-3 py-1.5 text-[#F6F2E7]">
+          <span className="flex items-center gap-2 rounded-full bg-grad-brand px-3 py-1.5 text-[#F8F7F3]">
             Compatibilidade
             <span className="font-[family-name:var(--font-display)] text-[15px]">
               {Math.round(analysis.compatibility)}%
+            </span>
+            <span className="h-1.5 w-14 overflow-hidden rounded-full bg-[#073D35]/60">
+              <span
+                className="block h-full rounded-full bg-grad-compat"
+                style={{ width: `${Math.round(analysis.compatibility)}%` }}
+              />
             </span>
           </span>
         </div>
@@ -274,7 +282,7 @@ export function CareerCanvas({
               {canvas.objective}
             </p>
           ) : (
-            <p className="text-[#BFE3CE]">Ainda não preenchido.</p>
+            <p className="text-[#C5E3D9]">Ainda não preenchido.</p>
           )}
         </Bloco>
 
@@ -292,7 +300,7 @@ export function CareerCanvas({
                 {selfProfile.curiosities.map((c) => (
                   <span
                     key={c}
-                    className="rounded-full bg-[#EEF5EF] px-2.5 py-0.5 text-[12px] font-semibold text-[#2F6B45]"
+                    className="rounded-full bg-[#EAF2EF] px-2.5 py-0.5 text-[12px] font-semibold text-[#0B5A48]"
                   >
                     {c}
                   </span>
@@ -302,7 +310,7 @@ export function CareerCanvas({
           )}
           <Rotulo>Área escolhida</Rotulo>
           <div>
-            <span className="inline-block rounded-full bg-[#2F6B45] px-2.5 py-0.5 text-[12px] font-semibold text-[#F6F2E7]">
+            <span className="inline-block rounded-full bg-[#0B5A48] px-2.5 py-0.5 text-[12px] font-semibold text-[#F8F7F3]">
               {profile.title}
             </span>
           </div>
@@ -316,7 +324,7 @@ export function CareerCanvas({
           area={AREA.atuais}
         >
           {atuais.length === 0 ? (
-            <p className="text-[#8C978F]">
+            <p className="text-[#8FA3A6]">
               Nenhuma competência no nível mínimo ainda.
             </p>
           ) : (
@@ -324,13 +332,13 @@ export function CareerCanvas({
               {atuais.map((g) => (
                 <li
                   key={g.skillId}
-                  className="flex items-center justify-between gap-2 rounded-lg border border-[#DCE6DA] bg-[#FAFCF9] px-2.5 py-1.5"
+                  className="flex items-center justify-between gap-2 rounded-lg border border-[#D7DDD8] bg-[#FBFCFA] px-2.5 py-1.5"
                 >
                   <span className="min-w-0">
                     <span className="block leading-snug">
                       {skillName(g.skillId)}
                     </span>
-                    <span className="block text-[10px] uppercase tracking-wide text-[#6C7A6F]">
+                    <span className="block text-[10px] uppercase tracking-wide text-[#5F7F84]">
                       {getSkill(g.skillId)?.kind === "BEHAVIORAL"
                         ? "Comportamental"
                         : "Técnica"}
@@ -341,7 +349,7 @@ export function CareerCanvas({
               ))}
             </ul>
           )}
-          <p className="mt-auto pt-3 text-[11px] text-[#8C978F]">
+          <p className="mt-auto pt-3 text-[11px] text-[#8FA3A6]">
             Competências de {profile.title} em que você já atinge o nível
             mínimo, pela autoavaliação.
           </p>
@@ -357,7 +365,7 @@ export function CareerCanvas({
           {newSuggestions && (
             <Link
               href="/canvas"
-              className="mb-3 flex items-center gap-2 rounded-lg bg-[#BFE3CE]/40 px-2.5 py-1.5 text-[12px] font-medium text-[#26582F] print:hidden"
+              className="mb-3 flex items-center gap-2 rounded-lg bg-[#C5E3D9]/40 px-2.5 py-1.5 text-[12px] font-medium text-[#073D35] print:hidden"
             >
               <Sparkles className="h-3.5 w-3.5 shrink-0" aria-hidden />
               Há novas sugestões de competências
@@ -366,25 +374,31 @@ export function CareerCanvas({
           {!canvas || canvas.skillsToDevelop.length === 0 ? (
             <Vazio href="/canvas" />
           ) : (
-            <ol className="divide-y divide-dashed divide-[#DCE6DA]">
+            <ol className="divide-y divide-dashed divide-[#D7DDD8]">
               {canvas.skillsToDevelop.map((nome, i) => {
                 const g = gapByName.get(nome);
                 return (
                   <li key={nome} className="flex gap-2 py-1.5 first:pt-0">
-                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#BFE3CE]/70 text-[11px] font-bold text-[#0E2A20]">
+                    <span
+                      className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[11px] font-bold ${
+                        g?.recommendation
+                          ? PRIORITY_BADGE[g.recommendation]
+                          : "bg-[#C5E3D9]/70 text-[#073D35]"
+                      }`}
+                    >
                       {i + 1}
                     </span>
                     <span className="min-w-0 flex-1">
                       <span className="flex justify-between gap-2">
                         <span className="leading-snug">{nome}</span>
                         {g && g.gap > 0 && (
-                          <span className="shrink-0 text-[12px] text-[#6C7A6F]">
+                          <span className="shrink-0 text-[12px] text-[#5F7F84]">
                             {g.a} → {g.m}
                           </span>
                         )}
                       </span>
                       {g?.recommendation && (
-                        <span className="block text-[11.5px] font-semibold text-[#2F6B45]">
+                        <span className="block text-[11.5px] font-semibold text-[#0B5A48]">
                           {RECOMMENDATION_SHORT[g.recommendation]}
                         </span>
                       )}

@@ -12,14 +12,14 @@ export function JourneyStepper({ editing }: { editing: boolean }) {
 
   if (editing) {
     return (
-      <span className="text-[13px] text-[#6C7A6F]">
+      <span className="text-[13px] text-[#5F7F84]">
         Editando: {STEP_LABELS[JOURNEY_STEPS[index]]}
       </span>
     );
   }
 
   return (
-    <span className="text-[13px] text-[#6C7A6F]">
+    <span className="text-[13px] text-[#5F7F84]">
       Etapa {index + 1} de {JOURNEY_STEPS.length} ·{" "}
       {STEP_LABELS[JOURNEY_STEPS[index]]}
     </span>
