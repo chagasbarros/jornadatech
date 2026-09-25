@@ -46,7 +46,7 @@ export default async function PainelPage() {
         <PrintButton />
       </BrandHeader>
 
-      <main className="mx-auto max-w-6xl px-6 py-12 md:py-16 print:py-0">
+      <main className="mx-auto max-w-7xl px-6 py-12 md:py-16 print:py-0">
         <h1 className="font-[family-name:var(--font-display)] text-[30px] print:hidden leading-tight tracking-tight text-[#123F45] md:text-[36px]">
           Seu plano de carreira
         </h1>
