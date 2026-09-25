@@ -49,6 +49,8 @@ Carreira e um plano de ação salvos no painel.
   `requireStep` e carrega dados) + `*-form.tsx` (cliente) + `actions.ts` (Server Action).
 - `e2e/` — testes Playwright; `lib/**/*.test.ts` — testes Vitest.
 - `proxy.ts` — renovação da sessão Supabase + redirect otimista.
+- `docs/` — documentação do projeto (specs em PDF, identidade visual, modelo do Canvas).
+  Não colocar documentação em `public/`: tudo ali é servido publicamente pelo site.
 
 ## Autenticação (Supabase Auth, OTP por email)
 
@@ -94,7 +96,7 @@ Ordem das etapas (enum `JourneyStep`):
 4. `/canvas` — Canvas de Carreira, com "competências a desenvolver" pré-preenchido.
 5. `/action-plan` — metas de curto e médio prazo (objetivo, ação, prazo, indicador).
 6. `/dashboard` — Canvas de Carreira com os 10 blocos do projeto (`app/dashboard/career-canvas.tsx`,
-   spec em `public/documentacao-canvas-carreira.pdf`), metas marcáveis e análise de lacunas.
+   spec em `docs/documentacao-canvas-carreira.pdf`), metas marcáveis e análise de lacunas.
    Imprime só o Canvas, em uma página A4 paisagem. O nome do aluno não é exibido.
 
 Regras de navegação (implementadas em `requireStep`):
@@ -118,7 +120,7 @@ perfis e autoavaliação. Cada perfil lista suas competências com:
 `w` peso (normalizado no código: `w_i / Σw`), `m` proficiência mínima (1–5),
 `d` prioridade de mercado (1–3). Um teste valida o catálogo.
 
-Curadoria (`public/curadoria-competencias.pdf`): 6 perfis, 9 a 10 competências cada, nível
+Curadoria (`docs/curadoria-competencias.pdf`): 6 perfis, 9 a 10 competências cada, nível
 estágio/júnior. Por decisão da revisão, todas as competências de um perfil usam valores
 iguais (`equalSkills`: `w = 1/n`, `m = 3`, `d = 2`). Não reutilizar ids removidos
 (ex.: `trabalho-equipe`) — notas antigas ficam no banco com esse id.
@@ -164,6 +166,10 @@ dashboard mostra "há novas sugestões" quando diferem.
 - Server Components por padrão; `"use client"` só para interatividade.
 - Acesso a dados em `lib/`, nunca direto em componentes.
 - Textos da interface em português.
+- Identidade visual: `docs/identidade_visual_plano_de_carreira_ads.md` (verde petróleo `#0B5A48`
+  dominante, roxo `#4A4165` secundário, laranja `#F58E52` só como destaque). Gradientes como
+  utilitários em `app/globals.css` (`bg-grad-brand`, `bg-grad-compat`, `bg-grad-deco`).
+  O Canvas do dashboard segue `docs/modelo-do-canvas.jpeg`.
 
 ## Definição de pronto
 

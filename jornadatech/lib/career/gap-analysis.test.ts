@@ -158,7 +158,7 @@ describe("catálogo", () => {
     },
   );
 
-  // Decisões da curadoria (public/curadoria-competencias.pdf).
+  // Decisões da curadoria (docs/curadoria-competencias.pdf).
   it.each(PROFILES.map((p) => [p.id, p] as const))(
     "perfil %s tem 9 a 10 competências, com valores iguais",
     (_, profile) => {

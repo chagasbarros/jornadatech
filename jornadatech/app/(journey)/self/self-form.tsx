@@ -44,12 +44,12 @@ export default function SelfForm({ editing, initial }: Props) {
 
   return (
     <div className="mx-auto max-w-xl">
-      <h1 className="font-[family-name:var(--font-display)] text-[28px] leading-tight tracking-tight text-[#16231C] md:text-[34px] mt-10">
+      <h1 className="font-[family-name:var(--font-display)] text-[28px] leading-tight tracking-tight text-[#123F45] md:text-[34px] mt-10">
         Quem é você nessa jornada?
       </h1>
 
       <div className="mt-10">
-        <p className="mb-3 text-[16px] font-medium text-[#354238]">
+        <p className="mb-3 text-[16px] font-medium text-[#2A5359]">
           Onde você está no Curso de ADS?
         </p>
         <div className="space-y-1">
@@ -64,22 +64,22 @@ export default function SelfForm({ editing, initial }: Props) {
                 className={
                   "flex w-full items-start gap-3 rounded-2xl border p-2 text-left transition-colors " +
                   (selecionado
-                    ? "border-[#2F6B45] bg-[#BFE3CE]/30"
-                    : "border-[#DCE6DA] bg-white/50 hover:border-[#B9C9BE]")
+                    ? "border-[#0B5A48] bg-[#C5E3D9]/30"
+                    : "border-[#D7DDD8] bg-white/50 hover:border-[#B7C4BE]")
                 }
               >
                 <span
                   className={
                     "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border " +
                     (selecionado
-                      ? "border-[#2F6B45] bg-[#2F6B45] text-[#F6F2E7]"
-                      : "border-[#B9C9BE] bg-transparent")
+                      ? "border-[#0B5A48] bg-[#0B5A48] text-[#F8F7F3]"
+                      : "border-[#B7C4BE] bg-transparent")
                   }
                 >
                   {selecionado && <Check className="h-3.5 w-3.5" aria-hidden />}
                 </span>
                 <span>
-                  <span className="block text-[15px] font-semibold text-[#16231C]">
+                  <span className="block text-[15px] font-semibold text-[#123F45]">
                     {m.title}
                   </span>
                 </span>
@@ -92,7 +92,7 @@ export default function SelfForm({ editing, initial }: Props) {
       <div className="mt-10">
         <label
           htmlFor="motivacao"
-          className="mb-3 block text-[16px] font-medium text-[#354238]"
+          className="mb-3 block text-[16px] font-medium text-[#2A5359]"
         >
           O que te motiva a estudar tecnologia?
         </label>
@@ -103,14 +103,14 @@ export default function SelfForm({ editing, initial }: Props) {
           value={motivacao}
           onChange={(e) => setMotivacao(e.target.value)}
           placeholder="Ex.: quero um trabalho mais flexível, sempre gostei de resolver problemas..."
-          className="w-full resize-none rounded-2xl border border-[#DCE6DA] bg-white/50 p-4 text-[15px] text-[#16231C] placeholder:text-[#8C978F] outline-none transition-colors focus:border-[#2F6B45] focus:ring-2 focus:ring-[#BFE3CE]"
+          className="w-full resize-none rounded-2xl border border-[#D7DDD8] bg-white/50 p-4 text-[15px] text-[#123F45] placeholder:text-[#8FA3A6] outline-none transition-colors focus:border-[#0B5A48] focus:ring-2 focus:ring-[#C5E3D9]"
         />
       </div>
 
       <div className="mt-8">
-        <p className="mb-3 text-[16px] font-medium text-[#354238]">
+        <p className="mb-3 text-[16px] font-medium text-[#2A5359]">
           Quais assuntos despertam sua curiosidade?{" "}
-          <span className="font-normal text-[#8C978F]">(opcional)</span>
+          <span className="font-normal text-[#8FA3A6]">(opcional)</span>
         </p>
         <div className="flex flex-wrap gap-2">
           {CURIOSITIES.map((item) => {
@@ -124,8 +124,8 @@ export default function SelfForm({ editing, initial }: Props) {
                 className={
                   "rounded-full border px-4 py-2 text-[13px] font-medium transition-colors " +
                   (ativo
-                    ? "border-[#2F6B45] bg-[#2F6B45] text-[#F6F2E7]"
-                    : "border-[#DCE6DA] bg-white/50 text-[#354238] hover:border-[#B9C9BE]")
+                    ? "border-[#0B5A48] bg-[#0B5A48] text-[#F8F7F3]"
+                    : "border-[#D7DDD8] bg-white/50 text-[#2A5359] hover:border-[#B7C4BE]")
                 }
               >
                 {item}

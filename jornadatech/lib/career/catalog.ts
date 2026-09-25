@@ -1,7 +1,7 @@
 // Catálogo único de competências e perfis profissionais.
 // Os ids de competência são compartilhados entre os perfis e a autoavaliação.
 //
-// Curadoria: public/curadoria-competencias.pdf (revisão de 2026-09).
+// Curadoria: docs/curadoria-competencias.pdf (revisão de 2026-09).
 // Decisão da revisão: dentro de cada perfil, todas as competências têm o mesmo
 // peso, a mesma proficiência mínima e a mesma prioridade (ver equalSkills).
 

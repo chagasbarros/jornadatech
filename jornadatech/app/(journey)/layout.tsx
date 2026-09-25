@@ -12,7 +12,7 @@ export default async function JourneyLayout({
   const user = await requireUser();
 
   return (
-    <div className="min-h-screen bg-[#F6F2E7] text-[#16231C]">
+    <div className="min-h-screen bg-[#F8F7F3] text-[#123F45]">
       <BrandHeader>
         <JourneyStepper editing={Boolean(user.completedAt)} />
       </BrandHeader>
