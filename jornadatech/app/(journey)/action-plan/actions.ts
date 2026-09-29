@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { requireUser } from "@/lib/auth";
+import { ensureRaffleEntry } from "@/lib/raffle-entry";
 import { firstIssue, journeyUpdate, type ActionResult } from "@/lib/steps";
 import { actionPlanSchema, type ActionPlanInput } from "@/lib/validation/career";
 
@@ -32,6 +33,9 @@ export async function saveActionPlan(
       : []),
     prisma.user.update({ where: { id: user.id }, data: journey.data }),
   ]);
+
+  // Concluir a jornada inscreve o aluno no sorteio (código enviado por email).
+  await ensureRaffleEntry({ ...user, ...journey.data });
 
   redirect(journey.redirectTo);
 }
