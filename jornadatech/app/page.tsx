@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { RAFFLE_DRAW_DATE } from "@/lib/raffle";
 
 // Landing page, baseada em docs/exemplo-de-chamadas.pdf.
 // A versão anterior está guardada em app/_landing-antiga/page.tsx (fora do roteamento).
@@ -589,7 +590,10 @@ export default function Home() {
               </h2>
               <p className="mt-2 text-[15px] leading-relaxed text-[#456A70]">
                 Quem preencher o Canvas até o fim entra automaticamente no
-                sorteio.
+                sorteio e recebe por email um código de participação de 4
+                dígitos. Sorteio em {RAFFLE_DRAW_DATE}, com resultado divulgado
+                aqui no site; os ganhadores recebem um email com as
+                informações para resgatar o prêmio.
               </p>
             </div>
           </div>

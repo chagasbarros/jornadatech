@@ -37,6 +37,7 @@ model User {
   canvas      CareerCanvas?
   goals       ActionGoal[]
   feedback    JourneyFeedback?
+  raffleEntry RaffleEntry?
 }
 
 model SelfProfile {
@@ -98,4 +99,15 @@ model JourneyFeedback {
   /// 1 a 5.
   satisfaction Int?
   createdAt    DateTime @default(now())
+}
+
+/// Participação no sorteio do Evento Conexão, criada ao concluir a jornada.
+model RaffleEntry {
+  userId      String    @id @db.Uuid
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  /// Código de 4 dígitos enviado por email, único entre participantes.
+  code        String    @unique @db.Char(4)
+  /// Preenchido quando o email com o código é enviado.
+  emailSentAt DateTime?
+  createdAt   DateTime  @default(now())
 }

@@ -5,11 +5,14 @@ import {
   ArrowRight,
   PlusCircle,
   RefreshCcw,
+  Ticket,
   UserRound,
 } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import { requireStep } from "@/lib/auth";
 import { getCareerAnalysis } from "@/lib/career/data";
+import { RAFFLE_DRAW_DATE } from "@/lib/raffle";
+import { ensureRaffleEntry } from "@/lib/raffle-entry";
 import { BrandHeader } from "@/components/brand-header";
 import { GapSummary, skillName } from "@/components/gap-summary";
 import { CareerCanvas } from "./career-canvas";
@@ -24,13 +27,15 @@ export default async function PainelPage() {
   const career = await getCareerAnalysis(user);
   if (!career) redirect("/field-interest");
 
-  const [canvas, goals, selfProfile] = await Promise.all([
+  const [canvas, goals, selfProfile, raffle] = await Promise.all([
     prisma.careerCanvas.findUnique({ where: { userId: user.id } }),
     prisma.actionGoal.findMany({
       where: { userId: user.id },
       orderBy: { position: "asc" },
     }),
     prisma.selfProfile.findUnique({ where: { userId: user.id } }),
+    // Também inscreve quem concluiu a jornada antes de existir o sorteio.
+    ensureRaffleEntry(user),
   ]);
 
   const { profile, analysis } = career;
@@ -54,6 +59,33 @@ export default async function PainelPage() {
           Acompanhe sua evolução e edite qualquer parte do seu Canvas de
           Carreira, sem refazer tudo do início.
         </p>
+
+        {raffle && (
+          <div className="mt-6 flex flex-col gap-4 rounded-2xl bg-[#073D35] p-5 text-[#E7F1EE] sm:flex-row sm:items-center print:hidden">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F58E52] text-[#073D35]">
+              <Ticket className="h-5 w-5" aria-hidden />
+            </span>
+            <div className="flex-1 text-[14px] leading-relaxed text-[#C6D6D2]">
+              <p className="font-semibold text-white">
+                Você está no sorteio do Evento Conexão!
+              </p>
+              <p>
+                Sorteio em {RAFFLE_DRAW_DATE}, com resultado no site oficial do
+                Jornada Tech. Os ganhadores recebem um email com as
+                informações para resgatar o prêmio. Enviamos seu código para{" "}
+                {user.email}.
+              </p>
+            </div>
+            <div className="text-center sm:text-right">
+              <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#9ED1C3]">
+                Seu código
+              </p>
+              <p className="font-[family-name:var(--font-display)] text-[34px] font-bold leading-none tracking-[0.2em] text-[#F6B06A]">
+                {raffle.code}
+              </p>
+            </div>
+          </div>
+        )}
 
         {analysis.unassessed.length > 0 && (
           <Link
