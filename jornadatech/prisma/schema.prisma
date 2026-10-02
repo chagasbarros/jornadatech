@@ -92,13 +92,39 @@ model ActionGoal {
   @@index([userId])
 }
 
+enum FeedbackFit {
+  YES
+  PARTIAL
+  NO
+}
+
+/// Etapa mais difícil apontada no feedback; NONE = nenhuma.
+enum FeedbackStep {
+  SELF
+  FIELD_INTEREST
+  SELF_EVALUATION
+  CANVAS
+  ACTION_PLAN
+  NONE
+}
+
+/// Questionário obrigatório na primeira conclusão. As colunas são opcionais
+/// porque registros anteriores ao questionário atual não têm todas as respostas.
 model JourneyFeedback {
-  userId       String   @id @db.Uuid
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  nextAction   String
+  userId         String        @id @db.Uuid
+  user           User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  nextAction     String
   /// 1 a 5.
-  satisfaction Int?
-  createdAt    DateTime @default(now())
+  satisfaction   Int?
+  /// Clareza do próximo passo na carreira, 1 a 5.
+  clarity        Int?
+  /// As competências a desenvolver sugeridas fazem sentido?
+  suggestionsFit FeedbackFit?
+  hardestStep    FeedbackStep?
+  /// Recomendaria a um colega? 0 a 10.
+  recommend      Int?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @default(now()) @updatedAt
 }
 
 /// Participação no sorteio do Evento Conexão, criada ao concluir a jornada.

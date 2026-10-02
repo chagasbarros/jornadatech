@@ -34,16 +34,46 @@ export const goalSchema = z.object({
   suggested: z.boolean(),
 });
 
+export const SUGGESTIONS_FIT = [
+  { id: "YES", label: "Sim" },
+  { id: "PARTIAL", label: "Em parte" },
+  { id: "NO", label: "Não" },
+] as const;
+
+export const HARDEST_STEPS = [
+  { id: "SELF", label: "Quem sou eu" },
+  { id: "FIELD_INTEREST", label: "Área de interesse" },
+  { id: "SELF_EVALUATION", label: "Autoavaliação" },
+  { id: "CANVAS", label: "Canvas" },
+  { id: "ACTION_PLAN", label: "Plano de ação" },
+  { id: "NONE", label: "Nenhuma" },
+] as const;
+
+const scale = (min: number, max: number, message: string) =>
+  z.number(message).int(message).min(min, message).max(max, message);
+
+/** Questionário de fechamento, obrigatório na primeira conclusão da jornada. */
+export const feedbackSchema = z.object({
+  satisfaction: scale(1, 5, "Diga o que achou da experiência."),
+  clarity: scale(1, 5, "Diga quão claro está o seu próximo passo."),
+  suggestionsFit: z.enum(
+    SUGGESTIONS_FIT.map((o) => o.id),
+    "Diga se as competências sugeridas fazem sentido.",
+  ),
+  hardestStep: z.enum(
+    HARDEST_STEPS.map((o) => o.id),
+    "Escolha a etapa mais difícil (ou Nenhuma).",
+  ),
+  nextAction: text(300).min(10, "Descreva sua próxima ação (mínimo de 10 caracteres)."),
+  recommend: scale(0, 10, "Diga se recomendaria a um colega."),
+});
+
 export const actionPlanSchema = z.object({
   goals: z.array(goalSchema).min(1, "Adicione pelo menos uma meta.").max(20),
-  feedback: z
-    .object({
-      nextAction: text(300),
-      satisfaction: z.number().int().min(1).max(5).nullable(),
-    })
-    .nullable(),
+  feedback: feedbackSchema.nullable(),
 });
 
 export type CanvasInput = z.infer<typeof canvasSchema>;
 export type GoalInput = z.infer<typeof goalSchema>;
+export type FeedbackInput = z.infer<typeof feedbackSchema>;
 export type ActionPlanInput = z.infer<typeof actionPlanSchema>;

@@ -3,10 +3,109 @@
 import { useState, useTransition } from "react";
 import { Check, Plus, Sparkles, Trash2, X } from "lucide-react";
 import { StepFooter } from "@/components/step-footer";
-import { HORIZONS, type GoalInput } from "@/lib/validation/career";
+import {
+  feedbackSchema,
+  HARDEST_STEPS,
+  HORIZONS,
+  SUGGESTIONS_FIT,
+  type FeedbackInput,
+  type GoalInput,
+} from "@/lib/validation/career";
 import { saveActionPlan } from "./actions";
 
 type Meta = GoalInput & { key: string };
+
+// Respostas do questionário enquanto o aluno preenche (null = não respondida).
+type Respostas = {
+  [K in keyof FeedbackInput]: K extends "nextAction" ? string : FeedbackInput[K] | null;
+};
+
+const RESPOSTAS_VAZIAS: Respostas = {
+  satisfaction: null,
+  clarity: null,
+  suggestionsFit: null,
+  hardestStep: null,
+  nextAction: "",
+  recommend: null,
+};
+
+const PERGUNTA_CLASS = "mb-2 mt-5 block text-[13px] font-medium text-[#2A5359]";
+
+function opcaoClass(selecionada: boolean) {
+  return (
+    "flex items-center justify-center rounded-full border text-[13px] font-semibold transition-colors " +
+    (selecionada
+      ? "border-[#0B5A48] bg-[#0B5A48] text-[#F8F7F3]"
+      : "border-[#D7DDD8] bg-white/50 text-[#2A5359] hover:border-[#B7C4BE]")
+  );
+}
+
+function Escala({
+  de,
+  ate,
+  valor,
+  onChange,
+  rotulos,
+  label,
+}: {
+  de: number;
+  ate: number;
+  valor: number | null;
+  onChange: (n: number) => void;
+  rotulos: [string, string];
+  label: string;
+}) {
+  const numeros = Array.from({ length: ate - de + 1 }, (_, i) => de + i);
+  return (
+    <div role="group" aria-label={label}>
+      <div className="flex gap-1">
+        {numeros.map((n) => (
+          <button
+            key={n}
+            type="button"
+            onClick={() => onChange(n)}
+            aria-pressed={valor === n}
+            className={"h-9 min-w-0 flex-1 " + opcaoClass(valor === n)}
+          >
+            {n}
+          </button>
+        ))}
+      </div>
+      <div className="mt-1 flex justify-between text-[11px] text-[#8FA3A6]">
+        <span>{rotulos[0]}</span>
+        <span>{rotulos[1]}</span>
+      </div>
+    </div>
+  );
+}
+
+function Opcoes<T extends string>({
+  opcoes,
+  valor,
+  onChange,
+  label,
+}: {
+  opcoes: readonly { id: T; label: string }[];
+  valor: T | null;
+  onChange: (id: T) => void;
+  label: string;
+}) {
+  return (
+    <div role="group" aria-label={label} className="flex flex-wrap gap-2">
+      {opcoes.map((o) => (
+        <button
+          key={o.id}
+          type="button"
+          onClick={() => onChange(o.id)}
+          aria-pressed={valor === o.id}
+          className={"px-3.5 py-2 " + opcaoClass(valor === o.id)}
+        >
+          {o.label}
+        </button>
+      ))}
+    </div>
+  );
+}
 
 // Chave local só para o React; não é gravada.
 let seq = 0;
@@ -42,8 +141,8 @@ export default function ActionPlanForm({ editing, initialGoals }: Props) {
     initialGoals.map((g) => ({ ...g, key: nextKey() })),
   );
   const [mostrarFechamento, setMostrarFechamento] = useState(false);
-  const [proximoPasso, setProximoPasso] = useState("");
-  const [satisfacao, setSatisfacao] = useState<number | null>(null);
+  const [respostas, setRespostas] = useState<Respostas>(RESPOSTAS_VAZIAS);
+  const [erroFechamento, setErroFechamento] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
 
@@ -59,15 +158,27 @@ export default function ActionPlanForm({ editing, initialGoals }: Props) {
     );
   }
 
-  function salvar(comFeedback: boolean) {
+  function responder<K extends keyof Respostas>(campo: K, valor: Respostas[K]) {
+    setRespostas((atual) => ({ ...atual, [campo]: valor }));
+  }
+
+  function concluir() {
+    const parsed = feedbackSchema.safeParse(respostas);
+    if (!parsed.success) {
+      setErroFechamento(parsed.error.issues[0]?.message ?? "Responda a todas as perguntas.");
+      return;
+    }
+    setErroFechamento(null);
+    salvar(parsed.data);
+  }
+
+  function salvar(feedback: FeedbackInput | null) {
     setError(null);
     startTransition(async () => {
       const result = await saveActionPlan({
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         goals: metas.map(({ key, ...g }) => g),
-        feedback: comFeedback
-          ? { nextAction: proximoPasso, satisfaction: satisfacao }
-          : null,
+        feedback,
       });
       if (result?.error) {
         setError(result.error);
@@ -206,7 +317,7 @@ export default function ActionPlanForm({ editing, initialGoals }: Props) {
         disabled={!podeSalvar}
         error={error}
         onSubmit={() =>
-          editing ? salvar(false) : setMostrarFechamento(true)
+          editing ? salvar(null) : setMostrarFechamento(true)
         }
       />
 
@@ -217,14 +328,19 @@ export default function ActionPlanForm({ editing, initialGoals }: Props) {
           aria-labelledby="fechamento-titulo"
           className="fixed inset-0 z-50 flex items-center justify-center bg-[#073D35]/50 px-6"
         >
-          <div className="w-full max-w-md rounded-[28px] bg-[#F8F7F3] p-7">
+          <div className="max-h-[calc(100dvh-2rem)] w-full max-w-md overflow-y-auto rounded-[28px] bg-[#F8F7F3] p-7">
             <div className="flex items-start justify-between">
-              <h2
-                id="fechamento-titulo"
-                className="font-[family-name:var(--font-display)] text-[22px] leading-tight text-[#123F45]"
-              >
-                Antes de continuar
-              </h2>
+              <div>
+                <h2
+                  id="fechamento-titulo"
+                  className="font-[family-name:var(--font-display)] text-[22px] leading-tight text-[#123F45]"
+                >
+                  Antes de continuar
+                </h2>
+                <p className="mt-1 text-[13px] text-[#456A70]">
+                  Responda para concluir a jornada. Leva menos de um minuto.
+                </p>
+              </div>
               <button
                 type="button"
                 onClick={() => setMostrarFechamento(false)}
@@ -235,47 +351,84 @@ export default function ActionPlanForm({ editing, initialGoals }: Props) {
               </button>
             </div>
 
-            <label
-              htmlFor="proximo-passo"
-              className="mb-1.5 mt-5 block text-[13px] font-medium text-[#2A5359]"
-            >
-              Minha próxima ação é...
+            <p className={PERGUNTA_CLASS}>1. O que você achou da experiência?</p>
+            <Escala
+              label="O que você achou da experiência?"
+              de={1}
+              ate={5}
+              valor={respostas.satisfaction}
+              onChange={(n) => responder("satisfaction", n)}
+              rotulos={["Ruim", "Excelente"]}
+            />
+
+            <p className={PERGUNTA_CLASS}>
+              2. Depois da jornada, quão claro está o seu próximo passo na
+              carreira?
+            </p>
+            <Escala
+              label="Quão claro está o seu próximo passo na carreira?"
+              de={1}
+              ate={5}
+              valor={respostas.clarity}
+              onChange={(n) => responder("clarity", n)}
+              rotulos={["Nada claro", "Muito claro"]}
+            />
+
+            <p className={PERGUNTA_CLASS}>
+              3. As competências a desenvolver sugeridas fazem sentido para
+              você?
+            </p>
+            <Opcoes
+              label="As competências sugeridas fazem sentido para você?"
+              opcoes={SUGGESTIONS_FIT}
+              valor={respostas.suggestionsFit}
+              onChange={(id) => responder("suggestionsFit", id)}
+            />
+
+            <p className={PERGUNTA_CLASS}>
+              4. Qual etapa foi mais difícil ou confusa?
+            </p>
+            <Opcoes
+              label="Qual etapa foi mais difícil ou confusa?"
+              opcoes={HARDEST_STEPS}
+              valor={respostas.hardestStep}
+              onChange={(id) => responder("hardestStep", id)}
+            />
+
+            <label htmlFor="proximo-passo" className={PERGUNTA_CLASS}>
+              5. Minha próxima ação é...
             </label>
             <textarea
               id="proximo-passo"
               rows={2}
               maxLength={300}
-              value={proximoPasso}
-              onChange={(e) => setProximoPasso(e.target.value)}
+              value={respostas.nextAction}
+              onChange={(e) => responder("nextAction", e.target.value)}
               placeholder="Ex.: começar o curso de JavaScript nesta semana"
               className="w-full resize-none rounded-xl border border-[#D7DDD8] bg-white/70 p-3 text-[14px] text-[#123F45] placeholder:text-[#8FA3A6] outline-none transition-colors focus:border-[#0B5A48] focus:ring-2 focus:ring-[#C5E3D9]"
             />
 
-            <p className="mb-2 mt-5 text-[13px] font-medium text-[#2A5359]">
-              O que achou dessa experiência?
+            <p className={PERGUNTA_CLASS}>
+              6. Você recomendaria a Jornada Tech a um colega?
             </p>
-            <div className="flex gap-2">
-              {[1, 2, 3, 4, 5].map((n) => (
-                <button
-                  key={n}
-                  type="button"
-                  onClick={() => setSatisfacao(n)}
-                  aria-pressed={satisfacao === n}
-                  className={
-                    "flex h-10 w-10 items-center justify-center rounded-full border text-[14px] font-semibold transition-colors " +
-                    (satisfacao === n
-                      ? "border-[#0B5A48] bg-[#0B5A48] text-[#F8F7F3]"
-                      : "border-[#D7DDD8] bg-white/50 text-[#2A5359] hover:border-[#B7C4BE]")
-                  }
-                >
-                  {n}
-                </button>
-              ))}
-            </div>
+            <Escala
+              label="Você recomendaria a Jornada Tech a um colega?"
+              de={0}
+              ate={10}
+              valor={respostas.recommend}
+              onChange={(n) => responder("recommend", n)}
+              rotulos={["Nada provável", "Muito provável"]}
+            />
+
+            {erroFechamento && (
+              <p role="alert" className="mt-5 text-[13px] text-[#B3432B]">
+                {erroFechamento}
+              </p>
+            )}
 
             <button
               type="button"
-              onClick={() => salvar(true)}
+              onClick={concluir}
               disabled={pending}
               className="mt-7 w-full rounded-full bg-[#0B5A48] py-3 text-[15px] font-semibold text-[#F8F7F3] transition-colors hover:bg-[#073D35] disabled:opacity-60"
             >
