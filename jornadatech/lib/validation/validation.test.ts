@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { emailSchema, verifyCodeSchema } from "./login";
-import { actionPlanSchema, fieldInterestSchema } from "./career";
+import { actionPlanSchema, feedbackSchema, fieldInterestSchema } from "./career";
 import { selfSchema } from "./self";
 
 describe("login", () => {
@@ -49,5 +49,42 @@ describe("etapas", () => {
     };
     const result = actionPlanSchema.safeParse({ goals: [goal], feedback: null });
     expect(result.error?.issues[0].message).toBe("Toda meta precisa de um indicador.");
+  });
+
+  describe("questionário de fechamento", () => {
+    const feedback = {
+      satisfaction: 4,
+      clarity: 5,
+      suggestionsFit: "PARTIAL",
+      hardestStep: "NONE",
+      nextAction: "Começar o curso de JavaScript",
+      recommend: 0,
+    };
+
+    it("aceita respostas completas (recomendação vai de 0 a 10)", () => {
+      expect(feedbackSchema.safeParse(feedback).success).toBe(true);
+      expect(feedbackSchema.safeParse({ ...feedback, recommend: 10 }).success).toBe(true);
+      expect(feedbackSchema.safeParse({ ...feedback, recommend: 11 }).success).toBe(false);
+    });
+
+    it("exige todas as respostas", () => {
+      for (const key of Object.keys(feedback)) {
+        expect(feedbackSchema.safeParse({ ...feedback, [key]: null }).success).toBe(false);
+      }
+    });
+
+    it("rejeita valores fora das opções e escalas", () => {
+      expect(feedbackSchema.safeParse({ ...feedback, satisfaction: 0 }).success).toBe(false);
+      expect(feedbackSchema.safeParse({ ...feedback, clarity: 6 }).success).toBe(false);
+      expect(feedbackSchema.safeParse({ ...feedback, suggestionsFit: "MAYBE" }).success).toBe(false);
+      expect(feedbackSchema.safeParse({ ...feedback, hardestStep: "DONE" }).success).toBe(false);
+    });
+
+    it("exige próxima ação com pelo menos 10 caracteres, sem contar espaços", () => {
+      const result = feedbackSchema.safeParse({ ...feedback, nextAction: "  estudar  " });
+      expect(result.error?.issues[0].message).toBe(
+        "Descreva sua próxima ação (mínimo de 10 caracteres).",
+      );
+    });
   });
 });

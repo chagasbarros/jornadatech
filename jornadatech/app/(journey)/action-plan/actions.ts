@@ -15,6 +15,10 @@ export async function saveActionPlan(
   if (!parsed.success) return firstIssue(parsed.error);
 
   const { goals, feedback } = parsed.data;
+  // Na primeira conclusão o questionário é obrigatório; depois, editar o plano não o pede.
+  if (!user.completedAt && !feedback) {
+    return { error: "Responda ao questionário para concluir a jornada." };
+  }
   const journey = journeyUpdate(user, "ACTION_PLAN");
 
   await prisma.$transaction([
