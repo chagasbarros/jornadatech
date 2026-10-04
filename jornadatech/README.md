@@ -121,6 +121,8 @@ A pasta [`docs/`](docs) reúne a documentação do projeto:
 - [Dados disponíveis por setor](docs/dados-disponiveis-por-setor.pdf): o que o banco permite
   extrair para a coordenação do curso, a direção da instituição e o núcleo de extensão
 - [Pôster do sorteio do Evento Conexão](docs/poster-sorteio-evento-conexao.pdf)
+- [Projeto integrador de Fundamentos em Análise e Projeto de Sistemas](docs/projeto-integrador/Projeto-Integrador-Jornada-Tech.pdf)
+  e o [deck da apresentação](docs/projeto-integrador/Jornada-Tech-Apresentacao.pptx)
 
 As regras de negócio, convenções de código e decisões de arquitetura estão em
 [`CLAUDE.md`](CLAUDE.md).
