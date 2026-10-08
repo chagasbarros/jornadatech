@@ -62,7 +62,8 @@ Nunca faça commit do arquivo `.env`.
 ### Configuração do Supabase
 
 - **Template de email:** em Authentication → Emails, o template deve usar `{{ .Token }}`
-  (código de 6 dígitos), e não o link mágico.
+  (código de 6 dígitos) como texto visível, e não o link mágico. O assunto e o HTML estão
+  em [`docs/template-email-otp.md`](docs/template-email-otp.md).
 - **SMTP próprio:** o SMTP embutido do Supabase tem limite baixo de envios. Em produção,
   configure um SMTP próprio em Authentication → Emails → SMTP Settings.
 

@@ -58,7 +58,8 @@ Carreira e um plano de ação salvos no painel.
   `verifyOtp({ email, token, type: 'email' })`. Não gerar/armazenar/comparar códigos manualmente.
 - `signInWithOtp` cria o usuário se não existir. Não checar "email existe?" antes; a resposta
   ao pedir código é sempre a mesma, para não revelar emails cadastrados.
-- Template de email do Supabase usa `{{ .Token }}` (código), não magic link.
+- Template de email do Supabase usa `{{ .Token }}` (código) como texto visível, não magic link.
+  O template versionado fica em `docs/template-email-otp.md`; ao alterar no painel, atualizar ali.
   O SMTP embutido do Supabase tem limite baixo — produção usa SMTP próprio configurado no painel.
 - Após `verifyOtp`, no servidor: `upsert` do `User` do Prisma com `id = auth.users.id`.
 - Login e logout são Server Actions.
