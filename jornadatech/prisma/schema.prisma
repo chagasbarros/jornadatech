@@ -43,6 +43,8 @@ model User {
 model SelfProfile {
   userId      String   @id @db.Uuid
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  /// Id do curso em lib/career/courses.ts.
+  course      String
   semester    String
   motivation  String
   curiosities String[]

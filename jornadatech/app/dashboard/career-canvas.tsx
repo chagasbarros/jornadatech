@@ -31,6 +31,7 @@ import type {
 import { MAX_LEVEL, getSkill, type Profile } from "@/lib/career/catalog";
 import type { GapAnalysis, Recommendation } from "@/lib/career/gap-analysis";
 import { skillName } from "@/components/gap-summary";
+import { getCourse } from "@/lib/career/courses";
 import { CURIOSITIES, SEMESTERS } from "@/lib/validation/self";
 import { GoalToggle } from "./goal-toggle";
 
@@ -270,6 +271,8 @@ export function CareerCanvas({
     timeZone: "America/Sao_Paulo",
   });
   const curiosidades = selfProfile?.curiosities ?? [];
+  const semestre = selfProfile ? SEMESTER_LABEL[selfProfile.semester] : undefined;
+  const curso = getCourse(selfProfile?.course);
 
   return (
     <section
@@ -306,7 +309,7 @@ export function CareerCanvas({
               <div>
                 <dt className="text-[#C5E3D9]">Semestre</dt>
                 <dd className="font-semibold">
-                  {(selfProfile && SEMESTER_LABEL[selfProfile.semester]) ?? "—"}
+                  {semestre && curso ? `${semestre} · ${curso.id.toUpperCase()}` : "—"}
                 </dd>
               </div>
             </div>
@@ -357,7 +360,7 @@ export function CareerCanvas({
               <Texto valor={selfProfile?.motivation} href="/self" />
             </Item>
             <Item icone={GraduationCap} tom="roxo" titulo="Momento no curso">
-              {(selfProfile && SEMESTER_LABEL[selfProfile.semester]) ?? (
+              {semestre && curso ? `${semestre} · ${curso.name}` : (
                 <Vazio href="/self" />
               )}
             </Item>

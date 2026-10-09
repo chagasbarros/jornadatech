@@ -12,6 +12,7 @@ export default async function SelfPage() {
     <SelfForm
       editing={Boolean(user.completedAt)}
       initial={{
+        course: profile?.course ?? null,
         semester: profile?.semester ?? null,
         motivation: profile?.motivation ?? "",
         curiosities: profile?.curiosities ?? [],
