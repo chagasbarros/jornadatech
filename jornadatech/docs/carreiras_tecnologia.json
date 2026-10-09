@@ -1,0 +1,1313 @@
+{
+  "versao": "1.0",
+  "data_pesquisa": "2026-10-09",
+  "descricao": "Carreiras possíveis para ingressantes em Ciência da Computação, Sistemas de Informação e Análise e Desenvolvimento de Sistemas, com resumo das atividades, 7 competências técnicas e 4 comportamentais por carreira.",
+  "legenda_relacao": {
+    "direta": "O código descreve esta carreira.",
+    "relacionada": "Não há código próprio; é a ocupação oficial mais próxima."
+  },
+  "fontes": [
+    {
+      "id": "cbo",
+      "nome": "Classificação Brasileira de Ocupações (CBO) – Ministério do Trabalho e Emprego",
+      "url": "https://cbo.mte.gov.br"
+    },
+    {
+      "id": "sbc",
+      "nome": "Referenciais de Formação para os Cursos de Graduação em Computação (SBC, 2017)",
+      "url": "https://books-sol.sbc.org.br/index.php/sbc/catalog/download/134/586/904?inline=1"
+    },
+    {
+      "id": "sbc-atitudinais",
+      "nome": "Referenciais de Formação – Competências Atitudinais (SBC)",
+      "url": "https://books-sol.sbc.org.br/index.php/sbc/catalog/download/63/280/529?inline=1"
+    },
+    {
+      "id": "dcn",
+      "nome": "Diretrizes Curriculares Nacionais dos cursos de Computação – Resolução CNE/CES nº 5/2016",
+      "url": "http://portal.mec.gov.br/index.php?option=com_docman&view=download&alias=52101-rces005-16-pdf&category_slug=novembro-2016-pdf&Itemid=30192"
+    },
+    {
+      "id": "onet",
+      "nome": "O*NET OnLine (EUA)",
+      "url": "https://www.onetonline.org"
+    },
+    {
+      "id": "esco",
+      "nome": "ESCO – European Skills, Competences, Qualifications and Occupations (grupos ISCO-08)",
+      "url": "https://esco.ec.europa.eu/pt/classification/occupation_main"
+    }
+  ],
+  "cursos": [
+    {
+      "id": "cc",
+      "nome": "Ciência da Computação",
+      "grau": "Bacharelado",
+      "carreiras": [
+        {
+          "id": "dev-backend",
+          "nome": "Desenvolvedor(a) Back-end",
+          "resumo": "Constrói a parte do sistema que o usuário não vê: regras de negócio, APIs e integração com bancos de dados e outros serviços. Cuida para que a aplicação funcione corretamente, seja segura e aguente o volume de acessos.",
+          "competencias_tecnicas": [
+            "Lógica de programação e estruturas de dados",
+            "Uma linguagem de back-end (ex.: Java, C#, Python, Go ou Node.js)",
+            "Criação e consumo de APIs REST",
+            "Bancos de dados relacionais e SQL",
+            "Controle de versão com Git",
+            "Testes automatizados (unitários e de integração)",
+            "Segurança de aplicações e autenticação"
+          ],
+          "competencias_comportamentais": [
+            "Raciocínio lógico e senso analítico",
+            "Trabalho em equipe",
+            "Aprendizado contínuo",
+            "Atenção a detalhes"
+          ],
+          "fontes": {
+            "cbo": [
+              {
+                "codigo": "2124-05",
+                "titulo": "Analista de desenvolvimento de sistemas",
+                "relacao": "direta"
+              }
+            ],
+            "onet": [
+              {
+                "codigo": "15-1252.00",
+                "titulo": "Software Developers",
+                "relacao": "direta",
+                "url": "https://www.onetonline.org/link/summary/15-1252.00"
+              }
+            ],
+            "esco_isco08": [
+              {
+                "codigo": "2512",
+                "titulo": "Desenvolvedores de software",
+                "relacao": "direta"
+              }
+            ],
+            "sbc": {
+              "referencia": "Referenciais de Formação SBC 2017, Cap. II (RF-CC-17)",
+              "url": "https://books-sol.sbc.org.br/index.php/sbc/catalog/download/134/586/904?inline=1",
+              "eixos": "Eixo 2 – Desenvolvimento de Sistemas"
+            }
+          }
+        },
+        {
+          "id": "cientista-dados",
+          "nome": "Cientista de Dados",
+          "resumo": "Usa estatística, programação e conhecimento do negócio para tirar respostas de grandes volumes de dados. Cria modelos que preveem resultados e apresenta as conclusões a quem toma decisões.",
+          "competencias_tecnicas": [
+            "Python (pandas, NumPy, scikit-learn) ou R",
+            "Estatística e probabilidade",
+            "SQL e manipulação de dados",
+            "Aprendizado de máquina (regressão, classificação, agrupamento)",
+            "Visualização de dados",
+            "Limpeza e preparação de dados",
+            "Validação e avaliação de modelos"
+          ],
+          "competencias_comportamentais": [
+            "Curiosidade intelectual",
+            "Pensamento crítico",
+            "Comunicação de resultados",
+            "Integridade e ética no uso de dados"
+          ],
+          "fontes": {
+            "cbo": [
+              {
+                "codigo": "2112-20",
+                "titulo": "Cientista de dados",
+                "relacao": "direta"
+              }
+            ],
+            "onet": [
+              {
+                "codigo": "15-2051.00",
+                "titulo": "Data Scientists",
+                "relacao": "direta",
+                "url": "https://www.onetonline.org/link/summary/15-2051.00"
+              }
+            ],
+            "esco_isco08": [],
+            "sbc": {
+              "referencia": "Referenciais de Formação SBC 2017, Cap. II (RF-CC-17)",
+              "url": "https://books-sol.sbc.org.br/index.php/sbc/catalog/download/134/586/904?inline=1",
+              "eixos": "Eixos 1 – Resolução de Problemas e 2 – Desenvolvimento de Sistemas"
+            }
+          }
+        },
+        {
+          "id": "eng-ml",
+          "nome": "Engenheiro(a) de Machine Learning e IA",
+          "resumo": "Leva modelos de inteligência artificial do experimento para produtos reais. Treina, avalia, coloca em produção e monitora modelos de aprendizado de máquina, incluindo modelos de linguagem.",
+          "competencias_tecnicas": [
+            "Python e bibliotecas de ML (ex.: scikit-learn, PyTorch ou TensorFlow)",
+            "Álgebra linear, cálculo e estatística",
+            "Aprendizado de máquina e redes neurais (deep learning)",
+            "Preparação de dados e engenharia de atributos",
+            "Avaliação de modelos e métricas",
+            "Implantação e monitoramento de modelos (MLOps)",
+            "Integração de modelos de linguagem (LLMs) por APIs"
+          ],
+          "competencias_comportamentais": [
+            "Curiosidade intelectual",
+            "Pensamento crítico",
+            "Persistência",
+            "Ética e responsabilidade"
+          ],
+          "fontes": {
+            "cbo": [
+              {
+                "codigo": "2112-20",
+                "titulo": "Cientista de dados",
+                "relacao": "relacionada"
+              },
+              {
+                "codigo": "2031-05",
+                "titulo": "Pesquisador em ciências da computação e informática",
+                "relacao": "relacionada"
+              }
+            ],
+            "onet": [
+              {
+                "codigo": "15-2051.00",
+                "titulo": "Data Scientists",
+                "relacao": "relacionada",
+                "url": "https://www.onetonline.org/link/summary/15-2051.00"
+              },
+              {
+                "codigo": "15-1221.00",
+                "titulo": "Computer and Information Research Scientists",
+                "relacao": "relacionada",
+                "url": "https://www.onetonline.org/link/summary/15-1221.00"
+              }
+            ],
+            "esco_isco08": [],
+            "sbc": {
+              "referencia": "Referenciais de Formação SBC 2017, Cap. II (RF-CC-17)",
+              "url": "https://books-sol.sbc.org.br/index.php/sbc/catalog/download/134/586/904?inline=1",
+              "eixos": "Eixos 1 – Resolução de Problemas e 7 – Ciência, Tecnologia e Inovação"
+            }
+          },
+          "observacao": "Não há código próprio para engenharia de ML na CBO nem no O*NET; os códigos indicados são os mais próximos."
+        },
+        {
+          "id": "pesquisador",
+          "nome": "Pesquisador(a) em Computação",
+          "resumo": "Investiga problemas em aberto da computação e cria novos algoritmos, modelos e tecnologias. Atua em universidades, institutos de pesquisa e laboratórios de P&D de empresas, geralmente após mestrado e doutorado.",
+          "competencias_tecnicas": [
+            "Algoritmos e complexidade computacional",
+            "Matemática discreta, lógica e teoria da computação",
+            "Metodologia científica e desenho de experimentos",
+            "Leitura e escrita de artigos científicos em inglês",
+            "Programação para protótipos e experimentos",
+            "Estatística para análise de resultados",
+            "Domínio aprofundado de uma área (ex.: IA, redes, sistemas distribuídos)"
+          ],
+          "competencias_comportamentais": [
+            "Espírito investigativo",
+            "Persistência",
+            "Pensamento crítico",
+            "Comunicação escrita e oral"
+          ],
+          "fontes": {
+            "cbo": [
+              {
+                "codigo": "2031-05",
+                "titulo": "Pesquisador em ciências da computação e informática",
+                "relacao": "direta"
+              }
+            ],
+            "onet": [
+              {
+                "codigo": "15-1221.00",
+                "titulo": "Computer and Information Research Scientists",
+                "relacao": "direta",
+                "url": "https://www.onetonline.org/link/summary/15-1221.00"
+              }
+            ],
+            "esco_isco08": [],
+            "sbc": {
+              "referencia": "Referenciais de Formação SBC 2017, Cap. II (RF-CC-17)",
+              "url": "https://books-sol.sbc.org.br/index.php/sbc/catalog/download/134/586/904?inline=1",
+              "eixos": "Eixo 7 – Ciência, Tecnologia e Inovação"
+            }
+          }
+        },
+        {
+          "id": "arquiteto-software",
+          "nome": "Arquiteto(a) de Software e Soluções",
+          "resumo": "Define a estrutura de sistemas grandes: como as partes se comunicam, quais tecnologias usar e como garantir desempenho, segurança e custo. Costuma ser um papel para quem já tem alguns anos de experiência em desenvolvimento.",
+          "competencias_tecnicas": [
+            "Padrões de arquitetura (camadas, microsserviços, orientada a eventos)",
+            "Padrões de projeto e princípios de design (ex.: SOLID)",
+            "Computação em nuvem e sistemas distribuídos",
+            "Integração de sistemas e APIs",
+            "Requisitos não funcionais (desempenho, escalabilidade, disponibilidade)",
+            "Segurança de software",
+            "Modelagem e documentação de arquitetura (ex.: UML, modelo C4)"
+          ],
+          "competencias_comportamentais": [
+            "Antecipar cenários futuros",
+            "Capacidade de síntese e comunicação",
+            "Tomada de decisão",
+            "Liderança técnica"
+          ],
+          "fontes": {
+            "cbo": [
+              {
+                "codigo": "2124-25",
+                "titulo": "Arquiteto de soluções de tecnologia da informação",
+                "relacao": "direta"
+              }
+            ],
+            "onet": [
+              {
+                "codigo": "15-1299.08",
+                "titulo": "Computer Systems Engineers/Architects",
+                "relacao": "direta",
+                "url": "https://www.onetonline.org/link/summary/15-1299.08"
+              }
+            ],
+            "esco_isco08": [
+              {
+                "codigo": "2511",
+                "titulo": "Analistas de sistemas",
+                "relacao": "relacionada"
+              }
+            ],
+            "sbc": {
+              "referencia": "Referenciais de Formação SBC 2017, Cap. II (RF-CC-17)",
+              "url": "https://books-sol.sbc.org.br/index.php/sbc/catalog/download/134/586/904?inline=1",
+              "eixos": "Eixos 2 – Desenvolvimento de Sistemas e 4 – Implantação de Sistemas"
+            }
+          }
+        },
+        {
+          "id": "devops-cloud",
+          "nome": "Engenheiro(a) DevOps e Cloud",
+          "resumo": "Automatiza o caminho entre o código e o usuário: compilação, testes, publicação e monitoramento. Mantém a infraestrutura em nuvem estável, escalável e com custo sob controle.",
+          "competencias_tecnicas": [
+            "Linux e linha de comando",
+            "Scripts de automação (Bash ou Python)",
+            "Pipelines de integração e entrega contínuas (CI/CD)",
+            "Contêineres (Docker) e orquestração (Kubernetes)",
+            "Provedores de nuvem (ex.: AWS, Azure ou Google Cloud)",
+            "Infraestrutura como código (ex.: Terraform)",
+            "Monitoramento e observabilidade (logs, métricas, alertas)"
+          ],
+          "competencias_comportamentais": [
+            "Resolução de problemas sob pressão",
+            "Colaboração entre equipes",
+            "Aprendizado contínuo",
+            "Responsabilidade e confiabilidade"
+          ],
+          "fontes": {
+            "cbo": [
+              {
+                "codigo": "2123-15",
+                "titulo": "Administrador de sistemas operacionais",
+                "relacao": "relacionada"
+              },
+              {
+                "codigo": "2124-25",
+                "titulo": "Arquiteto de soluções de tecnologia da informação",
+                "relacao": "relacionada"
+              }
+            ],
+            "onet": [
+              {
+                "codigo": "15-1244.00",
+                "titulo": "Network and Computer Systems Administrators",
+                "relacao": "relacionada",
+                "url": "https://www.onetonline.org/link/summary/15-1244.00"
+              },
+              {
+                "codigo": "15-1299.08",
+                "titulo": "Computer Systems Engineers/Architects",
+                "relacao": "relacionada",
+                "url": "https://www.onetonline.org/link/summary/15-1299.08"
+              }
+            ],
+            "esco_isco08": [
+              {
+                "codigo": "2522",
+                "titulo": "Administradores de sistemas",
+                "relacao": "relacionada"
+              }
+            ],
+            "sbc": {
+              "referencia": "Referenciais de Formação SBC 2017, Cap. II (RF-CC-17)",
+              "url": "https://books-sol.sbc.org.br/index.php/sbc/catalog/download/134/586/904?inline=1",
+              "eixos": "Eixos 4 – Implantação de Sistemas e 5 – Gestão de Infraestrutura"
+            }
+          },
+          "observacao": "Não há código próprio para DevOps na CBO nem no O*NET; os códigos indicados são os mais próximos."
+        },
+        {
+          "id": "seguranca-info",
+          "nome": "Analista de Segurança da Informação",
+          "resumo": "Protege sistemas, redes e dados contra ataques e vazamentos. Monitora incidentes, avalia riscos, testa vulnerabilidades e ajuda a empresa a cumprir leis como a LGPD.",
+          "competencias_tecnicas": [
+            "Fundamentos de redes e protocolos",
+            "Sistemas operacionais Linux e Windows",
+            "Criptografia e gestão de identidades e acessos",
+            "Análise de vulnerabilidades e testes de invasão autorizados",
+            "Monitoramento e resposta a incidentes (ex.: SIEM)",
+            "Normas e legislação (ISO/IEC 27001, LGPD)",
+            "Segurança em nuvem e em aplicações"
+          ],
+          "competencias_comportamentais": [
+            "Sigilo e ética",
+            "Atenção concentrada",
+            "Trabalhar sob pressão",
+            "Iniciativa"
+          ],
+          "fontes": {
+            "cbo": [
+              {
+                "codigo": "2123-20",
+                "titulo": "Administrador em segurança da informação",
+                "relacao": "direta"
+              }
+            ],
+            "onet": [
+              {
+                "codigo": "15-1212.00",
+                "titulo": "Information Security Analysts",
+                "relacao": "direta",
+                "url": "https://www.onetonline.org/link/summary/15-1212.00"
+              },
+              {
+                "codigo": "15-1299.05",
+                "titulo": "Information Security Engineers",
+                "relacao": "relacionada",
+                "url": "https://www.onetonline.org/link/summary/15-1299.05"
+              }
+            ],
+            "esco_isco08": [
+              {
+                "codigo": "2529",
+                "titulo": "Profissionais de bancos de dados e redes não classificados anteriormente",
+                "relacao": "direta"
+              }
+            ],
+            "sbc": {
+              "referencia": "Referenciais de Formação SBC 2017, Cap. II (RF-CC-17)",
+              "url": "https://books-sol.sbc.org.br/index.php/sbc/catalog/download/134/586/904?inline=1",
+              "eixos": "Eixo 5 – Gestão de Infraestrutura"
+            }
+          }
+        },
+        {
+          "id": "eng-embarcados",
+          "nome": "Engenheiro(a) de Software Embarcado e IoT",
+          "resumo": "Desenvolve o software que roda dentro de equipamentos: eletrodomésticos, carros, sensores, máquinas industriais e dispositivos de Internet das Coisas. Trabalha perto do hardware, com pouca memória e exigências de tempo real.",
+          "competencias_tecnicas": [
+            "Programação em C e C++",
+            "Arquitetura e organização de computadores",
+            "Microcontroladores (ex.: ARM, ESP32, Arduino)",
+            "Sistemas operacionais de tempo real (RTOS)",
+            "Protocolos de comunicação (ex.: I2C, SPI, MQTT)",
+            "Eletrônica digital básica",
+            "Depuração de hardware e software"
+          ],
+          "competencias_comportamentais": [
+            "Raciocínio lógico",
+            "Atenção concentrada",
+            "Persistência",
+            "Trabalho em equipe multidisciplinar"
+          ],
+          "fontes": {
+            "cbo": [
+              {
+                "codigo": "2124-15",
+                "titulo": "Analista de sistemas de automação",
+                "relacao": "relacionada"
+              }
+            ],
+            "onet": [
+              {
+                "codigo": "15-1252.00",
+                "titulo": "Software Developers",
+                "relacao": "relacionada",
+                "url": "https://www.onetonline.org/link/summary/15-1252.00"
+              }
+            ],
+            "esco_isco08": [
+              {
+                "codigo": "2512",
+                "titulo": "Desenvolvedores de software",
+                "relacao": "relacionada"
+              }
+            ],
+            "sbc": {
+              "referencia": "Referenciais de Formação SBC 2017, Cap. II (RF-CC-17)",
+              "url": "https://books-sol.sbc.org.br/index.php/sbc/catalog/download/134/586/904?inline=1",
+              "eixos": "Perfil do egresso (sistemas embarcados) e Eixo 5 – Gestão de Infraestrutura"
+            }
+          },
+          "observacao": "Não há código próprio para software embarcado na CBO nem no O*NET; os códigos indicados são os mais próximos."
+        }
+      ]
+    },
+    {
+      "id": "si",
+      "nome": "Sistemas de Informação",
+      "grau": "Bacharelado",
+      "carreiras": [
+        {
+          "id": "analista-sistemas",
+          "nome": "Analista de Sistemas e Requisitos",
+          "resumo": "Faz a ponte entre as necessidades de uma área da empresa e a equipe técnica. Levanta e documenta requisitos, modela processos e dados e acompanha se o sistema entregue resolve o problema.",
+          "competencias_tecnicas": [
+            "Levantamento e análise de requisitos",
+            "Modelagem de processos de negócio (ex.: BPMN)",
+            "Modelagem de sistemas com UML (casos de uso, classes)",
+            "Modelagem de dados e SQL",
+            "Prototipação de telas",
+            "Métodos ágeis (Scrum, Kanban) e histórias de usuário",
+            "Documentação técnica"
+          ],
+          "competencias_comportamentais": [
+            "Escuta ativa e empatia com o cliente",
+            "Comunicação",
+            "Capacidade de síntese",
+            "Senso analítico"
+          ],
+          "fontes": {
+            "cbo": [
+              {
+                "codigo": "2124-05",
+                "titulo": "Analista de desenvolvimento de sistemas",
+                "relacao": "direta"
+              }
+            ],
+            "onet": [
+              {
+                "codigo": "15-1211.00",
+                "titulo": "Computer Systems Analysts",
+                "relacao": "direta",
+                "url": "https://www.onetonline.org/link/summary/15-1211.00"
+              }
+            ],
+            "esco_isco08": [
+              {
+                "codigo": "2511",
+                "titulo": "Analistas de sistemas",
+                "relacao": "direta"
+              }
+            ],
+            "sbc": {
+              "referencia": "Referenciais de Formação SBC 2017, Cap. VI (Bacharelado em Sistemas de Informação)",
+              "url": "https://books-sol.sbc.org.br/index.php/sbc/catalog/download/134/586/904?inline=1"
+            }
+          }
+        },
+        {
+          "id": "analista-bi",
+          "nome": "Analista de BI e Dados",
+          "resumo": "Organiza os dados da empresa em relatórios e painéis que ajudam gestores a decidir. Define indicadores, integra fontes de dados e explica o que os números mostram.",
+          "competencias_tecnicas": [
+            "SQL avançado",
+            "Modelagem dimensional e data warehouse",
+            "Processos de ETL/ELT (extração, transformação e carga)",
+            "Ferramentas de BI (ex.: Power BI, Looker ou Tableau)",
+            "Planilhas eletrônicas avançadas",
+            "Estatística descritiva",
+            "Definição de indicadores de desempenho (KPIs)"
+          ],
+          "competencias_comportamentais": [
+            "Visão de negócio",
+            "Comunicação de resultados",
+            "Atenção a detalhes",
+            "Pensamento crítico"
+          ],
+          "fontes": {
+            "cbo": [
+              {
+                "codigo": "2112-20",
+                "titulo": "Cientista de dados",
+                "relacao": "relacionada"
+              },
+              {
+                "codigo": "2124-05",
+                "titulo": "Analista de desenvolvimento de sistemas",
+                "relacao": "relacionada"
+              }
+            ],
+            "onet": [
+              {
+                "codigo": "15-2051.01",
+                "titulo": "Business Intelligence Analysts",
+                "relacao": "direta",
+                "url": "https://www.onetonline.org/link/summary/15-2051.01"
+              }
+            ],
+            "esco_isco08": [],
+            "sbc": {
+              "referencia": "Referenciais de Formação SBC 2017, Cap. VI (Bacharelado em Sistemas de Informação)",
+              "url": "https://books-sol.sbc.org.br/index.php/sbc/catalog/download/134/586/904?inline=1"
+            }
+          },
+          "observacao": "Não há código próprio para analista de BI na CBO; os códigos indicados são os mais próximos."
+        },
+        {
+          "id": "gerente-projetos",
+          "nome": "Gerente de Projetos de TI",
+          "resumo": "Planeja e conduz projetos de tecnologia para que sejam entregues no prazo, no custo e com a qualidade combinada. Organiza a equipe, gerencia riscos e mantém os interessados informados.",
+          "competencias_tecnicas": [
+            "Gerenciamento de escopo, prazo, custo e riscos",
+            "Métodos ágeis (Scrum, Kanban) e híbridos",
+            "Ferramentas de gestão (ex.: Jira, Trello, MS Project)",
+            "Estimativas e cronogramas",
+            "Gestão de mudanças",
+            "Indicadores de desempenho do projeto",
+            "Ciclo de vida de desenvolvimento de software"
+          ],
+          "competencias_comportamentais": [
+            "Liderança",
+            "Negociação e gestão de conflitos",
+            "Comunicação",
+            "Tomada de decisão"
+          ],
+          "fontes": {
+            "cbo": [
+              {
+                "codigo": "1425-20",
+                "titulo": "Gerente de projetos de tecnologia da informação",
+                "relacao": "direta"
+              }
+            ],
+            "onet": [
+              {
+                "codigo": "15-1299.09",
+                "titulo": "Information Technology Project Managers",
+                "relacao": "direta",
+                "url": "https://www.onetonline.org/link/summary/15-1299.09"
+              }
+            ],
+            "esco_isco08": [
+              {
+                "codigo": "1330",
+                "titulo": "Dirigentes de serviços de tecnologia da informação e comunicação",
+                "relacao": "relacionada"
+              }
+            ],
+            "sbc": {
+              "referencia": "Referenciais de Formação SBC 2017, Cap. VI (Bacharelado em Sistemas de Informação)",
+              "url": "https://books-sol.sbc.org.br/index.php/sbc/catalog/download/134/586/904?inline=1"
+            }
+          }
+        },
+        {
+          "id": "product-manager",
+          "nome": "Product Owner / Product Manager",
+          "resumo": "Decide o que um produto digital deve fazer e em que ordem. Entende os usuários e o negócio, prioriza funcionalidades e trabalha com a equipe de desenvolvimento para entregar valor.",
+          "competencias_tecnicas": [
+            "Descoberta de produto e pesquisa com usuários",
+            "Escrita e priorização de backlog (histórias de usuário, critérios de aceite)",
+            "Métodos ágeis (Scrum, Kanban)",
+            "Métricas de produto e análise de dados (funil, retenção)",
+            "Prototipação e noções de UX",
+            "Testes A/B e experimentação",
+            "Noções de arquitetura de software para dialogar com a equipe técnica"
+          ],
+          "competencias_comportamentais": [
+            "Empatia com o usuário",
+            "Comunicação e persuasão",
+            "Tomada de decisão",
+            "Visão estratégica"
+          ],
+          "fontes": {
+            "cbo": [
+              {
+                "codigo": "1425-10",
+                "titulo": "Gerente de desenvolvimento de sistemas",
+                "relacao": "relacionada"
+              }
+            ],
+            "onet": [
+              {
+                "codigo": "11-3021.00",
+                "titulo": "Computer and Information Systems Managers",
+                "relacao": "relacionada",
+                "url": "https://www.onetonline.org/link/summary/11-3021.00"
+              }
+            ],
+            "esco_isco08": [
+              {
+                "codigo": "1330",
+                "titulo": "Dirigentes de serviços de tecnologia da informação e comunicação",
+                "relacao": "relacionada"
+              }
+            ],
+            "sbc": {
+              "referencia": "Referenciais de Formação SBC 2017, Cap. VI (Bacharelado em Sistemas de Informação)",
+              "url": "https://books-sol.sbc.org.br/index.php/sbc/catalog/download/134/586/904?inline=1"
+            }
+          },
+          "observacao": "Não há código próprio para gestão de produto na CBO nem no O*NET; os códigos indicados são os mais próximos."
+        },
+        {
+          "id": "dba",
+          "nome": "Administrador(a) de Banco de Dados (DBA)",
+          "resumo": "Cuida dos bancos de dados onde ficam as informações da empresa. Garante que estejam disponíveis, rápidos, seguros e com cópias de segurança, e ajuda os desenvolvedores a usar os dados de forma eficiente.",
+          "competencias_tecnicas": [
+            "SQL e modelagem relacional",
+            "SGBDs (ex.: PostgreSQL, MySQL, Oracle ou SQL Server)",
+            "Backup, recuperação e replicação",
+            "Otimização de consultas e índices",
+            "Segurança e controle de acesso aos dados",
+            "Bancos NoSQL (ex.: MongoDB, Redis)",
+            "Bancos de dados gerenciados em nuvem"
+          ],
+          "competencias_comportamentais": [
+            "Atenção concentrada",
+            "Sigilo",
+            "Organização",
+            "Trabalhar sob pressão"
+          ],
+          "fontes": {
+            "cbo": [
+              {
+                "codigo": "2123-05",
+                "titulo": "Administrador de banco de dados",
+                "relacao": "direta"
+              }
+            ],
+            "onet": [
+              {
+                "codigo": "15-1242.00",
+                "titulo": "Database Administrators",
+                "relacao": "direta",
+                "url": "https://www.onetonline.org/link/summary/15-1242.00"
+              }
+            ],
+            "esco_isco08": [
+              {
+                "codigo": "2521",
+                "titulo": "Designers e administradores de bancos de dados",
+                "relacao": "direta"
+              }
+            ],
+            "sbc": {
+              "referencia": "Referenciais de Formação SBC 2017, Cap. VI (Bacharelado em Sistemas de Informação)",
+              "url": "https://books-sol.sbc.org.br/index.php/sbc/catalog/download/134/586/904?inline=1"
+            }
+          }
+        },
+        {
+          "id": "seguranca-info",
+          "nome": "Analista de Segurança da Informação",
+          "resumo": "Protege sistemas, redes e dados contra ataques e vazamentos. Monitora incidentes, avalia riscos, testa vulnerabilidades e ajuda a empresa a cumprir leis como a LGPD.",
+          "competencias_tecnicas": [
+            "Fundamentos de redes e protocolos",
+            "Sistemas operacionais Linux e Windows",
+            "Criptografia e gestão de identidades e acessos",
+            "Análise de vulnerabilidades e testes de invasão autorizados",
+            "Monitoramento e resposta a incidentes (ex.: SIEM)",
+            "Normas e legislação (ISO/IEC 27001, LGPD)",
+            "Segurança em nuvem e em aplicações"
+          ],
+          "competencias_comportamentais": [
+            "Sigilo e ética",
+            "Atenção concentrada",
+            "Trabalhar sob pressão",
+            "Iniciativa"
+          ],
+          "fontes": {
+            "cbo": [
+              {
+                "codigo": "2123-20",
+                "titulo": "Administrador em segurança da informação",
+                "relacao": "direta"
+              }
+            ],
+            "onet": [
+              {
+                "codigo": "15-1212.00",
+                "titulo": "Information Security Analysts",
+                "relacao": "direta",
+                "url": "https://www.onetonline.org/link/summary/15-1212.00"
+              },
+              {
+                "codigo": "15-1299.05",
+                "titulo": "Information Security Engineers",
+                "relacao": "relacionada",
+                "url": "https://www.onetonline.org/link/summary/15-1299.05"
+              }
+            ],
+            "esco_isco08": [
+              {
+                "codigo": "2529",
+                "titulo": "Profissionais de bancos de dados e redes não classificados anteriormente",
+                "relacao": "direta"
+              }
+            ],
+            "sbc": {
+              "referencia": "Referenciais de Formação SBC 2017, Cap. VI (Bacharelado em Sistemas de Informação)",
+              "url": "https://books-sol.sbc.org.br/index.php/sbc/catalog/download/134/586/904?inline=1"
+            }
+          }
+        },
+        {
+          "id": "consultor-erp",
+          "nome": "Consultor(a) de Sistemas Empresariais (ERP/CRM)",
+          "resumo": "Implanta e adapta sistemas de gestão empresarial (ERP, CRM) aos processos de cada cliente. Configura módulos, treina usuários e conecta o sistema a outras ferramentas da empresa.",
+          "competencias_tecnicas": [
+            "Processos empresariais (finanças, vendas, estoque, RH)",
+            "Configuração e parametrização de ERPs (ex.: SAP, TOTVS ou Oracle)",
+            "Mapeamento e modelagem de processos",
+            "SQL e consultas aos dados do sistema",
+            "Integração entre sistemas (APIs, arquivos de troca)",
+            "Migração de dados",
+            "Elaboração de manuais e treinamento de usuários"
+          ],
+          "competencias_comportamentais": [
+            "Comunicação com o cliente",
+            "Empatia com o usuário",
+            "Negociação",
+            "Organização"
+          ],
+          "fontes": {
+            "cbo": [
+              {
+                "codigo": "2124-05",
+                "titulo": "Analista de desenvolvimento de sistemas (sinônimo: consultor de sistemas de TI)",
+                "relacao": "direta"
+              }
+            ],
+            "onet": [
+              {
+                "codigo": "15-1211.00",
+                "titulo": "Computer Systems Analysts",
+                "relacao": "relacionada",
+                "url": "https://www.onetonline.org/link/summary/15-1211.00"
+              }
+            ],
+            "esco_isco08": [
+              {
+                "codigo": "2511",
+                "titulo": "Analistas de sistemas",
+                "relacao": "relacionada"
+              }
+            ],
+            "sbc": {
+              "referencia": "Referenciais de Formação SBC 2017, Cap. VI (Bacharelado em Sistemas de Informação)",
+              "url": "https://books-sol.sbc.org.br/index.php/sbc/catalog/download/134/586/904?inline=1"
+            }
+          }
+        },
+        {
+          "id": "dev-fullstack",
+          "nome": "Desenvolvedor(a) Full Stack",
+          "resumo": "Atua nas duas pontas de uma aplicação web: a interface usada pelas pessoas e o servidor que processa os dados. É comum em equipes pequenas e startups, onde a mesma pessoa entrega uma funcionalidade do início ao fim.",
+          "competencias_tecnicas": [
+            "HTML, CSS e JavaScript/TypeScript",
+            "Um framework de front-end (ex.: React, Angular ou Vue)",
+            "Uma linguagem e um framework de back-end",
+            "APIs REST e integração entre sistemas",
+            "Bancos de dados relacionais e SQL",
+            "Git e trabalho colaborativo com pull requests",
+            "Publicação de aplicações (deploy) em nuvem"
+          ],
+          "competencias_comportamentais": [
+            "Autonomia e proatividade",
+            "Comunicação",
+            "Flexibilidade e adaptabilidade",
+            "Organização e gestão do tempo"
+          ],
+          "fontes": {
+            "cbo": [
+              {
+                "codigo": "2124-05",
+                "titulo": "Analista de desenvolvimento de sistemas",
+                "relacao": "direta"
+              },
+              {
+                "codigo": "3171-05",
+                "titulo": "Desenvolvedor web (técnico)",
+                "relacao": "relacionada"
+              }
+            ],
+            "onet": [
+              {
+                "codigo": "15-1254.00",
+                "titulo": "Web Developers",
+                "relacao": "direta",
+                "url": "https://www.onetonline.org/link/summary/15-1254.00"
+              },
+              {
+                "codigo": "15-1252.00",
+                "titulo": "Software Developers",
+                "relacao": "relacionada",
+                "url": "https://www.onetonline.org/link/summary/15-1252.00"
+              }
+            ],
+            "esco_isco08": [
+              {
+                "codigo": "2513",
+                "titulo": "Desenvolvedores web e multimídia",
+                "relacao": "direta"
+              },
+              {
+                "codigo": "2512",
+                "titulo": "Desenvolvedores de software",
+                "relacao": "relacionada"
+              }
+            ],
+            "sbc": {
+              "referencia": "Referenciais de Formação SBC 2017, Cap. VI (Bacharelado em Sistemas de Informação)",
+              "url": "https://books-sol.sbc.org.br/index.php/sbc/catalog/download/134/586/904?inline=1"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ads",
+      "nome": "Análise e Desenvolvimento de Sistemas",
+      "grau": "Tecnólogo",
+      "carreiras": [
+        {
+          "id": "dev-frontend",
+          "nome": "Desenvolvedor(a) Front-end",
+          "resumo": "Transforma o design em telas que funcionam no navegador. Cuida da aparência, da facilidade de uso, da acessibilidade e da velocidade de sites e aplicações web.",
+          "competencias_tecnicas": [
+            "HTML semântico e CSS com layout responsivo",
+            "JavaScript e TypeScript",
+            "Um framework de front-end (ex.: React, Angular ou Vue)",
+            "Consumo de APIs REST",
+            "Acessibilidade web e boas práticas de usabilidade",
+            "Testes de interface e depuração no navegador",
+            "Controle de versão com Git"
+          ],
+          "competencias_comportamentais": [
+            "Empatia com o usuário",
+            "Atenção a detalhes",
+            "Criatividade",
+            "Comunicação com as áreas de design e produto"
+          ],
+          "fontes": {
+            "cbo": [
+              {
+                "codigo": "3171-05",
+                "titulo": "Desenvolvedor web (técnico)",
+                "relacao": "direta"
+              },
+              {
+                "codigo": "2124-05",
+                "titulo": "Analista de desenvolvimento de sistemas",
+                "relacao": "relacionada"
+              }
+            ],
+            "onet": [
+              {
+                "codigo": "15-1254.00",
+                "titulo": "Web Developers",
+                "relacao": "direta",
+                "url": "https://www.onetonline.org/link/summary/15-1254.00"
+              },
+              {
+                "codigo": "15-1255.00",
+                "titulo": "Web and Digital Interface Designers",
+                "relacao": "relacionada",
+                "url": "https://www.onetonline.org/link/summary/15-1255.00"
+              }
+            ],
+            "esco_isco08": [
+              {
+                "codigo": "2513",
+                "titulo": "Desenvolvedores web e multimídia",
+                "relacao": "direta"
+              }
+            ],
+            "sbc": {
+              "referencia": "Referenciais de Formação SBC 2017, Cap. VII.7 (Análise e Desenvolvimento de Sistemas)",
+              "url": "https://books-sol.sbc.org.br/index.php/sbc/catalog/download/134/586/904?inline=1"
+            }
+          }
+        },
+        {
+          "id": "dev-backend",
+          "nome": "Desenvolvedor(a) Back-end",
+          "resumo": "Constrói a parte do sistema que o usuário não vê: regras de negócio, APIs e integração com bancos de dados e outros serviços. Cuida para que a aplicação funcione corretamente, seja segura e aguente o volume de acessos.",
+          "competencias_tecnicas": [
+            "Lógica de programação e estruturas de dados",
+            "Uma linguagem de back-end (ex.: Java, C#, Python, Go ou Node.js)",
+            "Criação e consumo de APIs REST",
+            "Bancos de dados relacionais e SQL",
+            "Controle de versão com Git",
+            "Testes automatizados (unitários e de integração)",
+            "Segurança de aplicações e autenticação"
+          ],
+          "competencias_comportamentais": [
+            "Raciocínio lógico e senso analítico",
+            "Trabalho em equipe",
+            "Aprendizado contínuo",
+            "Atenção a detalhes"
+          ],
+          "fontes": {
+            "cbo": [
+              {
+                "codigo": "2124-05",
+                "titulo": "Analista de desenvolvimento de sistemas",
+                "relacao": "direta"
+              }
+            ],
+            "onet": [
+              {
+                "codigo": "15-1252.00",
+                "titulo": "Software Developers",
+                "relacao": "direta",
+                "url": "https://www.onetonline.org/link/summary/15-1252.00"
+              }
+            ],
+            "esco_isco08": [
+              {
+                "codigo": "2512",
+                "titulo": "Desenvolvedores de software",
+                "relacao": "direta"
+              }
+            ],
+            "sbc": {
+              "referencia": "Referenciais de Formação SBC 2017, Cap. VII.7 (Análise e Desenvolvimento de Sistemas)",
+              "url": "https://books-sol.sbc.org.br/index.php/sbc/catalog/download/134/586/904?inline=1"
+            }
+          }
+        },
+        {
+          "id": "dev-fullstack",
+          "nome": "Desenvolvedor(a) Full Stack",
+          "resumo": "Atua nas duas pontas de uma aplicação web: a interface usada pelas pessoas e o servidor que processa os dados. É comum em equipes pequenas e startups, onde a mesma pessoa entrega uma funcionalidade do início ao fim.",
+          "competencias_tecnicas": [
+            "HTML, CSS e JavaScript/TypeScript",
+            "Um framework de front-end (ex.: React, Angular ou Vue)",
+            "Uma linguagem e um framework de back-end",
+            "APIs REST e integração entre sistemas",
+            "Bancos de dados relacionais e SQL",
+            "Git e trabalho colaborativo com pull requests",
+            "Publicação de aplicações (deploy) em nuvem"
+          ],
+          "competencias_comportamentais": [
+            "Autonomia e proatividade",
+            "Comunicação",
+            "Flexibilidade e adaptabilidade",
+            "Organização e gestão do tempo"
+          ],
+          "fontes": {
+            "cbo": [
+              {
+                "codigo": "2124-05",
+                "titulo": "Analista de desenvolvimento de sistemas",
+                "relacao": "direta"
+              },
+              {
+                "codigo": "3171-05",
+                "titulo": "Desenvolvedor web (técnico)",
+                "relacao": "relacionada"
+              }
+            ],
+            "onet": [
+              {
+                "codigo": "15-1254.00",
+                "titulo": "Web Developers",
+                "relacao": "direta",
+                "url": "https://www.onetonline.org/link/summary/15-1254.00"
+              },
+              {
+                "codigo": "15-1252.00",
+                "titulo": "Software Developers",
+                "relacao": "relacionada",
+                "url": "https://www.onetonline.org/link/summary/15-1252.00"
+              }
+            ],
+            "esco_isco08": [
+              {
+                "codigo": "2513",
+                "titulo": "Desenvolvedores web e multimídia",
+                "relacao": "direta"
+              },
+              {
+                "codigo": "2512",
+                "titulo": "Desenvolvedores de software",
+                "relacao": "relacionada"
+              }
+            ],
+            "sbc": {
+              "referencia": "Referenciais de Formação SBC 2017, Cap. VII.7 (Análise e Desenvolvimento de Sistemas)",
+              "url": "https://books-sol.sbc.org.br/index.php/sbc/catalog/download/134/586/904?inline=1"
+            }
+          }
+        },
+        {
+          "id": "dev-mobile",
+          "nome": "Desenvolvedor(a) Mobile",
+          "resumo": "Desenvolve aplicativos para celulares e tablets (Android e iOS). Lida com limites de bateria, conexão e tamanho de tela, e publica os apps nas lojas.",
+          "competencias_tecnicas": [
+            "Kotlin (Android) e/ou Swift (iOS)",
+            "Frameworks multiplataforma (ex.: Flutter ou React Native)",
+            "Design de interfaces para dispositivos móveis",
+            "Consumo de APIs e armazenamento local de dados",
+            "Recursos do aparelho (câmera, GPS, notificações)",
+            "Testes e publicação nas lojas de aplicativos",
+            "Controle de versão com Git"
+          ],
+          "competencias_comportamentais": [
+            "Empatia com o usuário",
+            "Atenção a detalhes",
+            "Aprendizado contínuo",
+            "Trabalho em equipe"
+          ],
+          "fontes": {
+            "cbo": [
+              {
+                "codigo": "2124-05",
+                "titulo": "Analista de desenvolvimento de sistemas",
+                "relacao": "relacionada"
+              }
+            ],
+            "onet": [
+              {
+                "codigo": "15-1252.00",
+                "titulo": "Software Developers",
+                "relacao": "relacionada",
+                "url": "https://www.onetonline.org/link/summary/15-1252.00"
+              }
+            ],
+            "esco_isco08": [
+              {
+                "codigo": "2514",
+                "titulo": "Programadores de aplicações",
+                "relacao": "relacionada"
+              }
+            ],
+            "sbc": {
+              "referencia": "Referenciais de Formação SBC 2017, Cap. VII.7 (Análise e Desenvolvimento de Sistemas)",
+              "url": "https://books-sol.sbc.org.br/index.php/sbc/catalog/download/134/586/904?inline=1"
+            }
+          },
+          "observacao": "Não há código próprio para desenvolvimento mobile na CBO nem no O*NET; os códigos indicados são os mais próximos."
+        },
+        {
+          "id": "analista-qa",
+          "nome": "Analista de Testes e Qualidade (QA)",
+          "resumo": "Garante que o software funcione como deveria antes de chegar ao usuário. Planeja e executa testes, automatiza verificações e registra os defeitos para a equipe corrigir.",
+          "competencias_tecnicas": [
+            "Técnicas de teste de software (casos de teste, valores-limite, partição de equivalência)",
+            "Elaboração de cenários e massa de dados de teste",
+            "Automação de testes (ex.: Selenium, Cypress ou Playwright)",
+            "Testes de API (ex.: Postman)",
+            "Registro e acompanhamento de defeitos (ex.: Jira)",
+            "Programação para scripts de teste",
+            "Testes em pipelines de integração contínua (CI)"
+          ],
+          "competencias_comportamentais": [
+            "Atenção concentrada",
+            "Senso analítico",
+            "Comunicação",
+            "Organização"
+          ],
+          "fontes": {
+            "cbo": [
+              {
+                "codigo": "2124-30",
+                "titulo": "Analista de testes de tecnologia da informação",
+                "relacao": "direta"
+              }
+            ],
+            "onet": [
+              {
+                "codigo": "15-1253.00",
+                "titulo": "Software Quality Assurance Analysts and Testers",
+                "relacao": "direta",
+                "url": "https://www.onetonline.org/link/summary/15-1253.00"
+              }
+            ],
+            "esco_isco08": [
+              {
+                "codigo": "2519",
+                "titulo": "Desenvolvedores e analistas de software e aplicações não classificados anteriormente",
+                "relacao": "direta"
+              }
+            ],
+            "sbc": {
+              "referencia": "Referenciais de Formação SBC 2017, Cap. VII.7 (Análise e Desenvolvimento de Sistemas)",
+              "url": "https://books-sol.sbc.org.br/index.php/sbc/catalog/download/134/586/904?inline=1"
+            }
+          }
+        },
+        {
+          "id": "analista-suporte",
+          "nome": "Analista de Suporte e Infraestrutura de TI",
+          "resumo": "Mantém computadores, sistemas e redes funcionando no dia a dia da empresa. Atende usuários, diagnostica falhas, instala e configura recursos e documenta as soluções.",
+          "competencias_tecnicas": [
+            "Sistemas operacionais Windows e Linux",
+            "Fundamentos de redes (TCP/IP, DNS, DHCP)",
+            "Diagnóstico de problemas de hardware e software",
+            "Ferramentas de chamados e boas práticas de service desk (ITIL)",
+            "Gestão de usuários e permissões de acesso",
+            "Scripts de automação (PowerShell ou Bash)",
+            "Documentação técnica e base de conhecimento"
+          ],
+          "competencias_comportamentais": [
+            "Paciência e empatia com o usuário",
+            "Comunicação",
+            "Trabalhar sob pressão",
+            "Organização"
+          ],
+          "fontes": {
+            "cbo": [
+              {
+                "codigo": "2124-20",
+                "titulo": "Analista de suporte computacional",
+                "relacao": "direta"
+              }
+            ],
+            "onet": [
+              {
+                "codigo": "15-1232.00",
+                "titulo": "Computer User Support Specialists",
+                "relacao": "direta",
+                "url": "https://www.onetonline.org/link/summary/15-1232.00"
+              },
+              {
+                "codigo": "15-1231.00",
+                "titulo": "Computer Network Support Specialists",
+                "relacao": "relacionada",
+                "url": "https://www.onetonline.org/link/summary/15-1231.00"
+              }
+            ],
+            "esco_isco08": [
+              {
+                "codigo": "3512",
+                "titulo": "Técnicos de suporte ao usuário de TIC",
+                "relacao": "relacionada"
+              }
+            ],
+            "sbc": {
+              "referencia": "Referenciais de Formação SBC 2017, Cap. VII.7 (Análise e Desenvolvimento de Sistemas)",
+              "url": "https://books-sol.sbc.org.br/index.php/sbc/catalog/download/134/586/904?inline=1"
+            }
+          }
+        },
+        {
+          "id": "devops-cloud",
+          "nome": "Engenheiro(a) DevOps e Cloud",
+          "resumo": "Automatiza o caminho entre o código e o usuário: compilação, testes, publicação e monitoramento. Mantém a infraestrutura em nuvem estável, escalável e com custo sob controle.",
+          "competencias_tecnicas": [
+            "Linux e linha de comando",
+            "Scripts de automação (Bash ou Python)",
+            "Pipelines de integração e entrega contínuas (CI/CD)",
+            "Contêineres (Docker) e orquestração (Kubernetes)",
+            "Provedores de nuvem (ex.: AWS, Azure ou Google Cloud)",
+            "Infraestrutura como código (ex.: Terraform)",
+            "Monitoramento e observabilidade (logs, métricas, alertas)"
+          ],
+          "competencias_comportamentais": [
+            "Resolução de problemas sob pressão",
+            "Colaboração entre equipes",
+            "Aprendizado contínuo",
+            "Responsabilidade e confiabilidade"
+          ],
+          "fontes": {
+            "cbo": [
+              {
+                "codigo": "2123-15",
+                "titulo": "Administrador de sistemas operacionais",
+                "relacao": "relacionada"
+              },
+              {
+                "codigo": "2124-25",
+                "titulo": "Arquiteto de soluções de tecnologia da informação",
+                "relacao": "relacionada"
+              }
+            ],
+            "onet": [
+              {
+                "codigo": "15-1244.00",
+                "titulo": "Network and Computer Systems Administrators",
+                "relacao": "relacionada",
+                "url": "https://www.onetonline.org/link/summary/15-1244.00"
+              },
+              {
+                "codigo": "15-1299.08",
+                "titulo": "Computer Systems Engineers/Architects",
+                "relacao": "relacionada",
+                "url": "https://www.onetonline.org/link/summary/15-1299.08"
+              }
+            ],
+            "esco_isco08": [
+              {
+                "codigo": "2522",
+                "titulo": "Administradores de sistemas",
+                "relacao": "relacionada"
+              }
+            ],
+            "sbc": {
+              "referencia": "Referenciais de Formação SBC 2017, Cap. VII.7 (Análise e Desenvolvimento de Sistemas)",
+              "url": "https://books-sol.sbc.org.br/index.php/sbc/catalog/download/134/586/904?inline=1"
+            }
+          },
+          "observacao": "Não há código próprio para DevOps na CBO nem no O*NET; os códigos indicados são os mais próximos."
+        },
+        {
+          "id": "dev-jogos",
+          "nome": "Desenvolvedor(a) de Jogos",
+          "resumo": "Programa jogos digitais para computador, console ou celular: mecânicas, física, gráficos, áudio e interface. Trabalha junto com artistas e game designers.",
+          "competencias_tecnicas": [
+            "Programação em C# ou C++",
+            "Motores de jogos (ex.: Unity, Unreal Engine ou Godot)",
+            "Matemática para jogos (vetores, matrizes, trigonometria)",
+            "Computação gráfica e física para jogos",
+            "Orientação a objetos e padrões de projeto",
+            "Otimização de desempenho",
+            "Controle de versão para projetos com arquivos grandes"
+          ],
+          "competencias_comportamentais": [
+            "Criatividade",
+            "Trabalho em equipe multidisciplinar",
+            "Persistência",
+            "Receptividade a feedback"
+          ],
+          "fontes": {
+            "cbo": [
+              {
+                "codigo": "3171-20",
+                "titulo": "Desenvolvedor de multimídia",
+                "relacao": "relacionada"
+              }
+            ],
+            "onet": [
+              {
+                "codigo": "15-1255.01",
+                "titulo": "Video Game Designers",
+                "relacao": "relacionada",
+                "url": "https://www.onetonline.org/link/summary/15-1255.01"
+              },
+              {
+                "codigo": "15-1252.00",
+                "titulo": "Software Developers",
+                "relacao": "relacionada",
+                "url": "https://www.onetonline.org/link/summary/15-1252.00"
+              }
+            ],
+            "esco_isco08": [
+              {
+                "codigo": "2513",
+                "titulo": "Desenvolvedores web e multimídia",
+                "relacao": "relacionada"
+              }
+            ],
+            "sbc": {
+              "referencia": "Referenciais de Formação SBC 2017, Cap. VII.7 (Análise e Desenvolvimento de Sistemas)",
+              "url": "https://books-sol.sbc.org.br/index.php/sbc/catalog/download/134/586/904?inline=1"
+            }
+          },
+          "observacao": "Não há código próprio para programador(a) de jogos na CBO; o O*NET tem Video Game Designers, mais voltado ao design do jogo."
+        }
+      ]
+    }
+  ]
+}

@@ -1,11 +1,20 @@
 import { describe, expect, it } from "vitest";
+import data from "@/docs/carreiras_tecnologia.json";
 import {
+  DEFAULT_MARKET_PRIORITY,
+  DEFAULT_MIN_LEVEL,
   MAX_LEVEL,
   PROFILES,
   SKILLS,
+  courseHasProfile,
+  getCourseProfiles,
+  getProfile,
   getProfileSkills,
+  getSkill,
+  skillSlug,
   type Profile,
 } from "./catalog";
+import { COURSES } from "./courses";
 import { TRACK_LIMIT, analyzeGap, recommendationFor } from "./gap-analysis";
 
 // Exemplo de referência do documento de conceito.
@@ -158,18 +167,71 @@ describe("catálogo", () => {
     },
   );
 
-  // Decisões da curadoria (docs/curadoria-competencias.pdf).
+  // Decisões da curadoria (docs/carreiras_tecnologia.json).
   it.each(PROFILES.map((p) => [p.id, p] as const))(
-    "perfil %s tem 9 a 10 competências, com valores iguais",
+    "perfil %s tem 7 técnicas + 4 comportamentais, com valores iguais",
     (_, profile) => {
-      expect(profile.skills.length).toBeGreaterThanOrEqual(9);
-      expect(profile.skills.length).toBeLessThanOrEqual(10);
-      const [first] = profile.skills;
+      const kinds = getProfileSkills(profile).map((s) => s.kind);
+      expect(kinds.filter((k) => k === "TECH")).toHaveLength(7);
+      expect(kinds.filter((k) => k === "BEHAVIORAL")).toHaveLength(4);
       for (const s of profile.skills) {
-        expect(s).toMatchObject({ w: first.w, m: first.m, d: first.d });
+        expect(s).toMatchObject({
+          w: 1 / 11,
+          m: DEFAULT_MIN_LEVEL,
+          d: DEFAULT_MARKET_PRIORITY,
+        });
       }
     },
   );
+
+  it("textos diferentes no JSON geram ids diferentes, e cada id tem um só tipo", () => {
+    const byId = new Map<string, Set<string>>();
+    for (const course of data.cursos) {
+      for (const c of course.carreiras) {
+        for (const [names, kind] of [
+          [c.competencias_tecnicas, "TECH"],
+          [c.competencias_comportamentais, "BEHAVIORAL"],
+        ] as const) {
+          for (const name of names) {
+            const id = skillSlug(name);
+            byId.set(id, (byId.get(id) ?? new Set()).add(name));
+            expect(getSkill(id)?.kind).toBe(kind);
+          }
+        }
+      }
+    }
+    for (const names of byId.values()) expect(names.size).toBe(1);
+  });
+
+  it("carreira repetida entre cursos tem os mesmos dados", () => {
+    const seen = new Map<string, string>();
+    for (const course of data.cursos) {
+      for (const c of course.carreiras) {
+        const json = JSON.stringify([
+          c.nome,
+          c.resumo,
+          c.competencias_tecnicas,
+          c.competencias_comportamentais,
+        ]);
+        expect(seen.get(c.id) ?? json).toBe(json);
+        seen.set(c.id, json);
+      }
+    }
+  });
+
+  it("cada curso tem 8 carreiras do catálogo", () => {
+    expect(COURSES.map((c) => c.id).sort()).toEqual(
+      data.cursos.map((c) => c.id).sort(),
+    );
+    for (const course of COURSES) {
+      const profiles = getCourseProfiles(course.id);
+      expect(profiles).toHaveLength(8);
+      expect(profiles.every((p) => getProfile(p.id) === p)).toBe(true);
+    }
+    expect(courseHasProfile("ads", "dev-frontend")).toBe(true);
+    expect(courseHasProfile("cc", "dev-frontend")).toBe(false);
+    expect(getCourseProfiles("astronomia")).toEqual([]);
+  });
 
   it("toda competência do catálogo é usada por algum perfil", () => {
     const used = new Set(

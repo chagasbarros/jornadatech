@@ -2,34 +2,71 @@
 
 import { useState, useTransition } from "react";
 import {
-  Code2,
-  Layers,
   BadgeCheck,
-  Cloud,
-  ShieldCheck,
-  ClipboardList,
+  BrainCircuit,
+  Building2,
+  ChartColumn,
+  ChartLine,
   Check,
+  ClipboardList,
+  Cloud,
+  Code2,
+  Cpu,
+  Database,
+  FlaskConical,
+  Gamepad2,
+  Headset,
+  Layers,
+  Lightbulb,
+  Network,
+  PanelsTopLeft,
+  Server,
+  ShieldCheck,
+  Smartphone,
   type LucideIcon,
 } from "lucide-react";
 import { StepFooter } from "@/components/step-footer";
-import { PROFILES } from "@/lib/career/catalog";
 import { saveFieldInterest } from "./actions";
 
+// Ids das carreiras em docs/carreiras_tecnologia.json.
 const ICONS: Record<string, LucideIcon> = {
-  desenvolvimento: Code2,
-  analise: Layers,
-  gestao: BadgeCheck,
-  infraestrutura: Cloud,
-  seguranca: ShieldCheck,
-  qualidade: ClipboardList,
+  "dev-backend": Server,
+  "dev-frontend": PanelsTopLeft,
+  "dev-fullstack": Code2,
+  "dev-mobile": Smartphone,
+  "dev-jogos": Gamepad2,
+  "analista-qa": ClipboardList,
+  "analista-suporte": Headset,
+  "devops-cloud": Cloud,
+  "seguranca-info": ShieldCheck,
+  "cientista-dados": ChartLine,
+  "eng-ml": BrainCircuit,
+  pesquisador: FlaskConical,
+  "arquiteto-software": Network,
+  "eng-embarcados": Cpu,
+  "analista-sistemas": Layers,
+  "analista-bi": ChartColumn,
+  "gerente-projetos": BadgeCheck,
+  "product-manager": Lightbulb,
+  dba: Database,
+  "consultor-erp": Building2,
 };
+
+type Career = { id: string; title: string; description: string };
 
 type Props = {
   editing: boolean;
   initialProfileId: string | null;
+  courseName: string;
+  careers: Career[];
 };
 
-export default function FieldInterestForm({ editing, initialProfileId }: Props) {
+export default function FieldInterestForm({
+  editing,
+  initialProfileId,
+  courseName,
+  careers,
+}: Props) {
   const [selecionada, setSelecionada] = useState<string | null>(
     initialProfileId,
   );
@@ -54,8 +91,9 @@ export default function FieldInterestForm({ editing, initialProfileId }: Props) 
         Qual área você quer comparar com o seu perfil?
       </h1>
       <p className="mt-3 text-[15px] leading-relaxed text-[#456A70]">
-        Escolha uma área. Depois da autoavaliação, você verá o quanto já atende
-        a ela e o que priorizar.
+        Escolha uma das carreiras mais comuns para quem cursa {courseName}.
+        Depois da autoavaliação, você verá o quanto já atende a ela e o que
+        priorizar.
       </p>
 
       {trocouPerfil && (
@@ -71,7 +109,7 @@ export default function FieldInterestForm({ editing, initialProfileId }: Props) 
         role="radiogroup"
         aria-label="Área profissional"
       >
-        {PROFILES.map((area) => {
+        {careers.map((area) => {
           const Icon = ICONS[area.id] ?? Code2;
           const ativa = selecionada === area.id;
           return (

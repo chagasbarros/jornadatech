@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { emailSchema, verifyCodeSchema } from "./login";
-import { actionPlanSchema, feedbackSchema, fieldInterestSchema } from "./career";
+import { actionPlanSchema, feedbackSchema } from "./career";
+import { fieldInterestSchema } from "./field-interest";
 import { selfSchema } from "./self";
 
 describe("login", () => {
@@ -23,17 +24,25 @@ describe("login", () => {
 });
 
 describe("etapas", () => {
-  it("self exige semestre conhecido e motivação", () => {
-    expect(
-      selfSchema.safeParse({ semester: "semestre-9", motivation: "x", curiosities: [] }).success,
-    ).toBe(false);
-    expect(
-      selfSchema.safeParse({ semester: "semestre-1", motivation: " ", curiosities: [] }).success,
-    ).toBe(false);
+  it("self exige curso, semestre do curso e motivação", () => {
+    const ok = { course: "ads", semester: "semestre-1", motivation: "x", curiosities: [] };
+    expect(selfSchema.safeParse(ok).success).toBe(true);
+    expect(selfSchema.safeParse({ ...ok, semester: "semestre-9" }).success).toBe(false);
+    expect(selfSchema.safeParse({ ...ok, motivation: " " }).success).toBe(false);
+    expect(selfSchema.safeParse({ ...ok, course: "medicina" }).success).toBe(false);
+  });
+
+  it("self limita o semestre ao curso (ADS 5, SI e CC 8)", () => {
+    const base = { motivation: "x", curiosities: [] };
+    const ads6 = selfSchema.safeParse({ ...base, course: "ads", semester: "semestre-6" });
+    expect(ads6.success).toBe(false);
+    expect(ads6.error?.issues[0].message).toBe("Escolha o seu semestre.");
+    expect(selfSchema.safeParse({ ...base, course: "cc", semester: "semestre-8" }).success).toBe(true);
+    expect(selfSchema.safeParse({ ...base, course: "si", semester: "semestre-8" }).success).toBe(true);
   });
 
   it("field-interest só aceita perfis do catálogo", () => {
-    expect(fieldInterestSchema.safeParse({ profileId: "desenvolvimento" }).success).toBe(true);
+    expect(fieldInterestSchema.safeParse({ profileId: "dev-backend" }).success).toBe(true);
     expect(fieldInterestSchema.safeParse({ profileId: "astronauta" }).success).toBe(false);
   });
 

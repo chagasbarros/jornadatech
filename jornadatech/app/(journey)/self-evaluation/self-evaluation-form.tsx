@@ -3,7 +3,8 @@
 import { useState, useTransition } from "react";
 import { ChevronDown } from "lucide-react";
 import { StepFooter } from "@/components/step-footer";
-import { PROFICIENCY_LEVELS, type Skill } from "@/lib/career/catalog";
+import type { Skill } from "@/lib/career/catalog";
+import { PROFICIENCY_LEVELS } from "@/lib/career/levels";
 import { saveSelfEvaluation } from "./actions";
 
 const CATEGORIAS = [

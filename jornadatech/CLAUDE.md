@@ -40,11 +40,15 @@ Carreira e um plano de ação salvos no painel.
 - `lib/auth.ts` — `requireUser()` e `requireStep(step)` (ver Autorização e Jornada).
 - `lib/journey.ts` — regras de navegação da jornada (funções puras, testadas).
 - `lib/steps.ts` — `journeyUpdate()` (avança `currentStep`/`completedAt`) e `ActionResult`.
-- `lib/career/catalog.ts` — catálogo único de perfis e competências (constantes versionadas).
+- `lib/career/catalog.ts` — catálogo único de perfis e competências, derivado de
+  `docs/carreiras_tecnologia.json`. Só no servidor: o JSON não deve ir para o navegador.
+- `lib/career/courses.ts` (cursos e nº de semestres) e `lib/career/levels.ts` (escala 0–5) —
+  módulos leves, sem o JSON, usáveis em Client Components.
 - `lib/career/gap-analysis.ts` — algoritmo de lacunas (funções puras).
 - `lib/career/suggestions.ts` — metas sugeridas para o plano de ação.
 - `lib/career/data.ts` — carrega notas do aluno e calcula a análise.
 - `lib/validation/` — schemas Zod, um por etapa; usados no formulário e no servidor.
+  `field-interest.ts` importa o catálogo e por isso fica fora de `career.ts`, que vai para o cliente.
 - `app/(journey)/` — etapas 1–5, com layout comum. Cada etapa: `page.tsx` (servidor, chama
   `requireStep` e carrega dados) + `*-form.tsx` (cliente) + `actions.ts` (Server Action).
 - `e2e/` — testes Playwright; `lib/**/*.test.ts` — testes Vitest.
@@ -91,8 +95,10 @@ Carreira e um plano de ação salvos no painel.
 
 Ordem das etapas (enum `JourneyStep`):
 
-1. `/self` — "Quem sou eu": interesses e contexto.
-2. `/field-interest` — escolha de **exatamente um** perfil profissional-alvo.
+1. `/self` — "Quem sou eu": curso (ADS, SI ou CC), semestre (ADS 1–5; SI e CC 1–8),
+   interesses e contexto.
+2. `/field-interest` — escolha de **exatamente um** perfil profissional-alvo, entre as
+   8 carreiras **do curso do aluno** (validado também na Server Action).
 3. `/self-evaluation` — autoavaliação das competências **do perfil escolhido** (0 a 5).
 4. `/canvas` — Canvas de Carreira, com "competências a desenvolver" pré-preenchido.
 5. `/action-plan` — metas de curto e médio prazo (objetivo, ação, prazo, indicador).
@@ -108,6 +114,8 @@ Regras de navegação (implementadas em `requireStep`):
 - **Após concluir** (`completedAt` preenchido): login leva ao `/dashboard`. Qualquer etapa pode
   ser editada; ao salvar, redireciona para `/dashboard` (não retoma o fluxo).
 - A mesma Server Action trata os dois casos, decidindo pelo `completedAt`.
+- Trocar de curso em `/self`: se a carreira escolhida não pertence ao novo curso, ela é
+  apagada e o aluno vai para `/field-interest` (mesmo com a jornada concluída).
 - Trocar de perfil: o aluno imprime o plano atual e edita `/field-interest`. O cálculo usa os
   dados existentes; competências do novo perfil sem nota contam como `a = 0`, e o dashboard
   avisa "avalie N novas competências".
@@ -125,10 +133,13 @@ perfis e autoavaliação. Cada perfil lista suas competências com:
 `w` peso (normalizado no código: `w_i / Σw`), `m` proficiência mínima (1–5),
 `d` prioridade de mercado (1–3). Um teste valida o catálogo.
 
-Curadoria (`docs/curadoria-competencias.pdf`): 6 perfis, 9 a 10 competências cada, nível
-estágio/júnior. Por decisão da revisão, todas as competências de um perfil usam valores
-iguais (`equalSkills`: `w = 1/n`, `m = 3`, `d = 2`). Não reutilizar ids removidos
-(ex.: `trabalho-equipe`) — notas antigas ficam no banco com esse id.
+Curadoria (`docs/carreiras_tecnologia.json`; fontes CBO, SBC, DCN, O*NET, ESCO): 3 cursos ×
+8 carreiras (20 únicas — algumas aparecem em mais de um curso), cada uma com 7 competências
+técnicas e 4 comportamentais. O id da competência é o slug do texto: textos idênticos são a
+mesma competência; mudar um texto no JSON muda o id e a nota antiga fica órfã no banco.
+Por decisão da revisão, todas as competências de um perfil usam valores iguais
+(`equalSkills`: `w = 1/n`, `m = 3`, `d = 2`). `docs/curadoria-competencias.pdf` é a
+curadoria anterior (6 perfis, só ADS).
 
 Para cada competência `i` do perfil, com `a_i` = nota do aluno (0–5; ausente = 0):
 

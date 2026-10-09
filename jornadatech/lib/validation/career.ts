@@ -1,9 +1,5 @@
 import { z } from "zod";
-import { MAX_LEVEL, MIN_LEVEL, PROFILES } from "@/lib/career/catalog";
-
-export const fieldInterestSchema = z.object({
-  profileId: z.enum(PROFILES.map((p) => p.id), "Escolha uma área."),
-});
+import { MAX_LEVEL, MIN_LEVEL } from "@/lib/career/levels";
 
 export const selfEvaluationSchema = z.object({
   levels: z.record(z.string(), z.number().int().min(MIN_LEVEL).max(MAX_LEVEL)),

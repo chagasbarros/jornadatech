@@ -3,19 +3,62 @@
 import { useState, useTransition } from "react";
 import { Check } from "lucide-react";
 import { StepFooter } from "@/components/step-footer";
-import { CURIOSITIES, SEMESTERS } from "@/lib/validation/self";
+import { COURSES } from "@/lib/career/courses";
+import { CURIOSITIES, semestersFor } from "@/lib/validation/self";
 import { saveSelf } from "./actions";
 
 type Props = {
   editing: boolean;
   initial: {
+    course: string | null;
     semester: string | null;
     motivation: string;
     curiosities: string[];
   };
 };
 
+function Opcao({
+  titulo,
+  selecionado,
+  onClick,
+}: {
+  titulo: string;
+  selecionado: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={selecionado}
+      className={
+        "flex w-full items-start gap-3 rounded-2xl border p-2 text-left transition-colors " +
+        (selecionado
+          ? "border-[#0B5A48] bg-[#C5E3D9]/30"
+          : "border-[#D7DDD8] bg-white/50 hover:border-[#B7C4BE]")
+      }
+    >
+      <span
+        className={
+          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border " +
+          (selecionado
+            ? "border-[#0B5A48] bg-[#0B5A48] text-[#F8F7F3]"
+            : "border-[#B7C4BE] bg-transparent")
+        }
+      >
+        {selecionado && <Check className="h-3.5 w-3.5" aria-hidden />}
+      </span>
+      <span>
+        <span className="block text-[15px] font-semibold text-[#123F45]">
+          {titulo}
+        </span>
+      </span>
+    </button>
+  );
+}
+
 export default function SelfForm({ editing, initial }: Props) {
+  const [curso, setCurso] = useState<string | null>(initial.course);
   const [momento, setMomento] = useState<string | null>(initial.semester);
   const [motivacao, setMotivacao] = useState(initial.motivation);
   const [curiosidades, setCuriosidades] = useState<string[]>(
@@ -23,6 +66,14 @@ export default function SelfForm({ editing, initial }: Props) {
   );
   const [error, setError] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
+
+  const semestres = semestersFor(curso);
+
+  function escolherCurso(id: string) {
+    setCurso(id);
+    // ADS tem menos semestres: descarta um semestre que o novo curso não oferece.
+    if (!semestersFor(id).some((s) => s.id === momento)) setMomento(null);
+  }
 
   function alternarCuriosidade(item: string) {
     setCuriosidades((atual) =>
@@ -34,6 +85,7 @@ export default function SelfForm({ editing, initial }: Props) {
     setError(null);
     startTransition(async () => {
       const result = await saveSelf({
+        course: curso ?? "",
         semester: momento ?? "",
         motivation: motivacao,
         curiosities: curiosidades,
@@ -50,44 +102,37 @@ export default function SelfForm({ editing, initial }: Props) {
 
       <div className="mt-10">
         <p className="mb-3 text-[16px] font-medium text-[#2A5359]">
-          Onde você está no Curso de ADS?
+          Qual é o seu curso?
         </p>
         <div className="space-y-1">
-          {SEMESTERS.map((m) => {
-            const selecionado = momento === m.id;
-            return (
-              <button
-                key={m.id}
-                type="button"
-                onClick={() => setMomento(m.id)}
-                aria-pressed={selecionado}
-                className={
-                  "flex w-full items-start gap-3 rounded-2xl border p-2 text-left transition-colors " +
-                  (selecionado
-                    ? "border-[#0B5A48] bg-[#C5E3D9]/30"
-                    : "border-[#D7DDD8] bg-white/50 hover:border-[#B7C4BE]")
-                }
-              >
-                <span
-                  className={
-                    "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border " +
-                    (selecionado
-                      ? "border-[#0B5A48] bg-[#0B5A48] text-[#F8F7F3]"
-                      : "border-[#B7C4BE] bg-transparent")
-                  }
-                >
-                  {selecionado && <Check className="h-3.5 w-3.5" aria-hidden />}
-                </span>
-                <span>
-                  <span className="block text-[15px] font-semibold text-[#123F45]">
-                    {m.title}
-                  </span>
-                </span>
-              </button>
-            );
-          })}
+          {COURSES.map((c) => (
+            <Opcao
+              key={c.id}
+              titulo={c.name}
+              selecionado={curso === c.id}
+              onClick={() => escolherCurso(c.id)}
+            />
+          ))}
         </div>
       </div>
+
+      {curso && (
+        <div className="mt-8">
+          <p className="mb-3 text-[16px] font-medium text-[#2A5359]">
+            Em que semestre você está?
+          </p>
+          <div className="grid grid-cols-2 gap-1 sm:grid-cols-4">
+            {semestres.map((m) => (
+              <Opcao
+                key={m.id}
+                titulo={m.title}
+                selecionado={momento === m.id}
+                onClick={() => setMomento(m.id)}
+              />
+            ))}
+          </div>
+        </div>
+      )}
 
       <div className="mt-10">
         <label
@@ -139,7 +184,7 @@ export default function SelfForm({ editing, initial }: Props) {
         editing={editing}
         label="Continuar"
         pending={pending}
-        disabled={!momento || !motivacao.trim()}
+        disabled={!curso || !momento || !motivacao.trim()}
         error={error}
         onSubmit={salvar}
       />
