@@ -1,3 +1,4 @@
+// Sorteio desativado: ensureRaffleEntry não é chamado (ver CLAUDE.md, "Sorteio").
 import "server-only";
 import { after } from "next/server";
 import { Prisma, type User } from "@prisma/client";

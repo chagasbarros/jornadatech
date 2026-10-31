@@ -15,8 +15,7 @@ avaliar suas competências e definir metas. No fim, recebe um **Canvas de Carrei
 4. **Canvas** (`/canvas`): Canvas de Carreira, com as competências a desenvolver já sugeridas.
 5. **Plano de ação** (`/action-plan`): metas de curto e médio prazo (objetivo, ação, prazo e
    indicador). Para concluir a jornada, o aluno responde a um questionário curto de feedback.
-6. **Painel** (`/dashboard`): Canvas de Carreira completo, metas marcáveis, análise de lacunas
-   e código do sorteio do Evento Conexão.
+6. **Painel** (`/dashboard`): Canvas de Carreira completo, metas marcáveis e análise de lacunas.
 
 A partir das notas da autoavaliação, o sistema calcula a **compatibilidade** do aluno com o
 perfil escolhido e uma **trilha** com as 5 competências mais urgentes, cada uma com um tipo de
@@ -55,7 +54,7 @@ Todas estão descritas em [`.env.example`](.env.example):
 | `DATABASE_URL` | Pooler do Supabase (porta 6543), usado pela aplicação. |
 | `DIRECT_URL` | Conexão direta ou session pooler (porta 5432), usado pelas migrations. |
 | `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase Auth. |
-| `SMTP_*` | Servidor de email usado para enviar o código do sorteio. |
+| `SMTP_*` | Servidor de email do código do sorteio. O sorteio está desativado; as variáveis são opcionais. |
 
 Nunca faça commit do arquivo `.env`.
 

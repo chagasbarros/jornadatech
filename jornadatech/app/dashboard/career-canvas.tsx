@@ -523,7 +523,7 @@ export function CareerCanvas({
                           cor={muito ? "bg-[#0B5A48]" : "bg-[#73519A]"}
                         />
                         <span className="whitespace-nowrap text-[10px] text-[#5F7F84]">
-                          {muito ? "Muito desenvolvida" : "Em desenvolvimento"}
+                          {muito ? "Muito desenvolvida" : "No nível esperado"}
                         </span>
                       </span>
                     </span>
@@ -537,7 +537,7 @@ export function CareerCanvas({
               <Nivel valor={5} cor="bg-[#0B5A48]" /> Muito desenvolvida (4–5)
             </p>
             <p className="flex items-center gap-2">
-              <Nivel valor={3} cor="bg-[#73519A]" /> Em desenvolvimento (3)
+              <Nivel valor={3} cor="bg-[#73519A]" /> No nível esperado (3)
             </p>
           </div>
         </Bloco>

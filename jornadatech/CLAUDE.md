@@ -119,12 +119,28 @@ Regras de navegação (implementadas em `requireStep`):
 - Trocar de perfil: o aluno imprime o plano atual e edita `/field-interest`. O cálculo usa os
   dados existentes; competências do novo perfil sem nota contam como `a = 0`, e o dashboard
   avisa "avalie N novas competências".
-- Sorteio do Evento Conexão (`lib/raffle.ts`, `lib/raffle-entry.ts`): ao concluir a jornada,
-  o aluno recebe um `RaffleEntry` com código único de 4 dígitos, enviado por email via SMTP
-  próprio (`lib/email.ts`, nodemailer, variáveis `SMTP_*`) e exibido no dashboard. O dashboard
-  também inscreve quem concluiu antes e reenvia o email se o envio anterior falhou.
+- Sorteio do Evento Conexão: **desativado**. Não aparece em nenhuma tela e não gera códigos
+  nem envia emails. Ver a seção "Sorteio (desativado)".
 - A "memória de sessão" é o `currentStep` + os dados de cada etapa, salvos no Postgres via
   Prisma a cada "Continuar". Não usar Supabase Storage nem o client JS do Supabase para dados.
+
+## Sorteio (desativado)
+
+O sorteio do Evento Conexão (realizado em 26/10/2026) saiu do frontend. O backend foi mantido,
+sem uso, para reativar no futuro:
+
+- `lib/raffle.ts` (gera o código de 4 dígitos), `lib/raffle-entry.ts` (`ensureRaffleEntry`:
+  cria o `RaffleEntry` com código único e agenda o email com `after()`) e `lib/email.ts`
+  (envio via SMTP próprio, nodemailer, variáveis `SMTP_*`). O email de login não usa esse
+  SMTP: é enviado pelo Supabase, com o SMTP do painel.
+- A tabela `RaffleEntry` continua no banco, com as participações já registradas.
+- As chamadas a `ensureRaffleEntry` estão comentadas em `app/(journey)/action-plan/actions.ts`
+  (inscreve ao concluir a jornada) e em `app/dashboard/page.tsx` (inscreve quem concluiu antes
+  e reenvia o email que falhou).
+
+Para reativar: atualizar `RAFFLE_DRAW_DATE` em `lib/raffle.ts` e o texto do email, descomentar
+as duas chamadas, recriar o aviso com o código no dashboard e a seção `#sorteio` da página
+inicial (ver o histórico do git), e conferir as variáveis `SMTP_*` na Vercel.
 
 ## Algoritmo de análise de lacunas (`lib/career/gap-analysis.ts`)
 

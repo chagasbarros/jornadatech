@@ -1,9 +1,10 @@
-// Sorteio do Evento Conexão. Funções puras — testadas em raffle.test.ts.
+// Sorteio do Evento Conexão — desativado, mantido para uso futuro (ver CLAUDE.md).
+// Funções puras — testadas em raffle.test.ts.
 import { randomInt } from "node:crypto";
 
 export const SITE_URL = "https://www.jornadatech.app.br";
 
-/** Data do sorteio, exibida no dashboard, no email e na página inicial. */
+/** Data do sorteio, exibida no email. */
 export const RAFFLE_DRAW_DATE = "26/10/2026";
 
 /** Código de participação: 4 dígitos, com zeros à esquerda (0000–9999). */

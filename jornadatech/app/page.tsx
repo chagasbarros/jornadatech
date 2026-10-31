@@ -9,15 +9,12 @@ import {
   Hammer,
   MapPin,
   Menu,
-  MapIcon,
   Rocket,
   Target,
-  Ticket,
   X,
 } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { RAFFLE_DRAW_DATE } from "@/lib/raffle";
 
 // Landing page, baseada em docs/exemplo-de-chamadas.pdf.
 // A versão anterior está guardada em app/_landing-antiga/page.tsx (fora do roteamento).
@@ -25,7 +22,7 @@ import { RAFFLE_DRAW_DATE } from "@/lib/raffle";
 export const metadata: Metadata = {
   title: "Jornada Tech — não deixe sua carreira acontecer por acaso",
   description:
-    "Descubra onde você está, onde quer chegar e qual é o seu próximo passo. Monte seu plano de carreira em tecnologia e concorra a um ingresso do Evento Conexão.",
+    "Descubra onde você está, onde quer chegar e qual é o seu próximo passo. Monte seu plano de carreira em tecnologia.",
 };
 
 const desculpas = [
@@ -237,86 +234,9 @@ function IlustracaoCidade() {
   );
 }
 
-/**
- * Barra flutuante "2 em 1": plano de carreira + sorteio do ingresso.
- * Fechar é só CSS (checkbox + peer), sem JavaScript.
- */
-function BarraFlutuante() {
-  return (
-    <>
-      <input
-        type="checkbox"
-        id="fechar-barra"
-        className="peer/barra sr-only"
-        aria-label="Fechar destaque"
-      />
-      <aside
-        aria-label="Benefícios de completar o Canvas"
-        className="fixed inset-x-3 bottom-3 z-40 peer-checked/barra:hidden md:inset-x-auto md:bottom-6 md:left-1/2 md:w-[min(920px,calc(100%-3rem))] md:-translate-x-1/2"
-      >
-        <div className="relative flex flex-col gap-3 rounded-3xl bg-[#073D35] p-4 pr-11 text-[#E7F1EE] shadow-[0_18px_50px_-12px_rgba(7,61,53,0.75)] ring-2 ring-[#9ED1C3]/70 md:flex-row md:items-center md:gap-5 md:rounded-full md:py-3 md:pl-3 md:pr-14">
-          {/* Selo "2 em 1" pulsando */}
-          <div className="flex items-center gap-3 md:contents">
-            <span className="relative flex h-12 w-12 shrink-0 items-center justify-center">
-              <span className="absolute inset-0 animate-ping rounded-full bg-[#F58E52]/50" />
-              <span
-                className={`relative flex h-12 w-12 flex-col items-center justify-center rounded-full bg-[#F58E52] leading-none text-[#073D35] ${display}`}
-              >
-                <span className="text-[18px] font-bold">2</span>
-                <span className="text-[9px] font-bold uppercase tracking-wide">
-                  em 1
-                </span>
-              </span>
-            </span>
-            <p className="text-[14px] font-semibold leading-snug md:hidden">
-              Complete seu Canvas e leve dois benefícios
-            </p>
-          </div>
-
-          <div className="flex flex-1 flex-col gap-2 text-[13px] sm:flex-row sm:items-center md:text-[14px]">
-            <span className="hidden font-semibold md:inline">
-              Complete seu Canvas e leve:
-            </span>
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5">
-              <MapIcon
-                className="h-4 w-4 shrink-0 text-[#9ED1C3]"
-                aria-hidden
-              />
-              Seu plano de carreira
-            </span>
-            <span className="hidden text-[#9ED1C3] sm:inline" aria-hidden>
-              +
-            </span>
-            <span className="inline-flex items-center gap-2 rounded-full bg-[#F58E52]/15 px-3 py-1.5 text-[#F6B06A]">
-              <Ticket className="h-4 w-4 shrink-0" aria-hidden />
-              Chance de ganhar ingresso do Evento Conexão
-            </span>
-          </div>
-
-          <Link
-            href="/login"
-            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#9ED1C3] px-6 py-3 text-[15px] font-bold text-[#073D35] transition-colors hover:bg-[#C5E3D9]"
-          >
-            Quero os dois
-            <ArrowRight className="h-4 w-4" aria-hidden />
-          </Link>
-
-          <label
-            htmlFor="fechar-barra"
-            aria-hidden
-            className="absolute right-3 top-3 flex h-7 w-7 cursor-pointer items-center justify-center rounded-full text-[#9CC3B8] hover:bg-white/10 hover:text-white md:top-1/2 md:-translate-y-1/2"
-          >
-            <X className="h-4 w-4" />
-          </label>
-        </div>
-      </aside>
-    </>
-  );
-}
-
 export default function Home() {
   return (
-    <div className="bg-[#F8F7F3] pb-44 text-[#123F45] antialiased sm:pb-36 md:pb-28">
+    <div className="bg-[#F8F7F3] text-[#123F45] antialiased">
       {/* ---------- Navegação ---------- */}
       <header className="sticky top-0 z-50 border-b border-[#D7DDD8] bg-[#F8F7F3]/90 backdrop-blur">
         <input type="checkbox" id="nav-toggle-v2" className="peer hidden" />
@@ -339,9 +259,6 @@ export default function Home() {
             </a>
             <a href="#perguntas" className="hover:text-[#123F45]">
               Como funciona
-            </a>
-            <a href="#sorteio" className="hover:text-[#123F45]">
-              Evento Conexão
             </a>
           </nav>
 
@@ -375,9 +292,6 @@ export default function Home() {
           </a>
           <a href="#perguntas" className="py-2 text-[15px] text-[#2A5359]">
             Como funciona
-          </a>
-          <a href="#sorteio" className="py-2 text-[15px] text-[#2A5359]">
-            Evento Conexão
           </a>
           <Link
             href="/login"
@@ -573,32 +487,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ---------- Sorteio: Evento Conexão ---------- */}
-        <section
-          id="sorteio"
-          className="border-t border-[#D7DDD8] bg-white/40 py-16"
-        >
-          <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 px-6 text-center md:flex-row md:text-left">
-            <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-[#C5E3D9]/70">
-              <Ticket className="h-7 w-7 text-[#073D35]" aria-hidden />
-            </span>
-            <div>
-              <h2
-                className={`text-[24px] leading-tight tracking-tight md:text-[30px] ${display}`}
-              >
-                Complete seu Canvas e concorra a um ingresso do Evento Conexão
-              </h2>
-              <p className="mt-2 text-[15px] leading-relaxed text-[#456A70]">
-                Quem preencher o Canvas até o fim entra automaticamente no
-                sorteio e recebe por email um código de participação de 4
-                dígitos. Sorteio em {RAFFLE_DRAW_DATE}, com resultado divulgado
-                aqui no site; os ganhadores recebem um email com as
-                informações para resgatar o prêmio.
-              </p>
-            </div>
-          </div>
-        </section>
-
         {/* ---------- Tela 7 — CTA final ---------- */}
         <section className="bg-grad-brand pt-20 text-[#E7F1EE] md:pt-28">
           <div className="mx-auto grid max-w-6xl items-end gap-12 px-6 md:grid-cols-2">
@@ -629,7 +517,6 @@ export default function Home() {
         </section>
       </main>
 
-      <BarraFlutuante />
 
       {/* ---------- Footer ---------- */}
       <footer className="border-t border-[#D7DDD8] py-12">
